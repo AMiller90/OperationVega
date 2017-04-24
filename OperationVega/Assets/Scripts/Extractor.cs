@@ -483,13 +483,6 @@ namespace Assets.Scripts
 
             this.UpdateRotation();
 
-            // If the navagent isnt looking for a current path - this helps prevent any lag when the unit is already stopped then starting to move,
-            // if the navagent is within stopping distance and its currently using the walk animation...
-            if (!this.navagent.pathPending && this.navagent.remainingDistance <= this.navagent.stoppingDistance && this.animatorcontroller.GetBool("IsWalking"))
-            {
-                this.animatorcontroller.SetBool("IsWalking", false);
-            }
-
             switch (this.theExtractorFsm.CurrentState.Statename)
             {
                 case "Idle":
