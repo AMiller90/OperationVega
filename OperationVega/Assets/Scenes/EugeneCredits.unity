@@ -218,12 +218,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 87869142}
---- !u!114 &88567165 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114292992044608878, guid: 924c3e0e679a0a04d9ff0f2f7d8572eb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1224130457}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &101847969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,13 +1986,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1713792676}
-  - component: {fileID: 1713792684}
-  - component: {fileID: 1713792683}
-  - component: {fileID: 1713792679}
-  - component: {fileID: 1713792682}
   - component: {fileID: 1713792677}
-  - component: {fileID: 1713792681}
   - component: {fileID: 1713792678}
+  - component: {fileID: 1713792679}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2101,86 +2091,95 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713792675}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 441ac79904307bb4d94c117749c4c953, type: 3}
+  m_Script: {fileID: 11500000, guid: 8632c40ab9d7427469503eb8d127a475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WorkshopUI: {fileID: 1635098393}
-  m_ThrusterChoice: {fileID: 768276344}
-  m_CockpitChoice: {fileID: 493917154}
-  m_WingChoice: {fileID: 416911377}
-  Xbutton: {fileID: 88567165}
---- !u!114 &1713792679
-MonoBehaviour:
+  clips:
+  - {fileID: 8300000, guid: 7ed2d5dcb2b074a439bf12d53a1f7df4, type: 3}
+  - {fileID: 8300000, guid: 9e05d2713c7bc484eacb2451237e906d, type: 3}
+  - {fileID: 8300000, guid: da500b92f894fd348bce62cb535f0187, type: 3}
+--- !u!82 &1713792679
+AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713792675}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ccdb4366a31a33458fd593e24868b98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textprefab: {fileID: 1001981462413232, guid: 29702b145af003a41b09999167e29131, type: 2}
---- !u!114 &1713792681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1713792675}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70cf5a91d3c89d64480d9820c3d906f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Timer: 0
-  CurrentKey: {fileID: 0}
-  customizeUi: {fileID: 0}
-  hotkeys:
-    Hotkeys: []
-  buttonimages: []
---- !u!114 &1713792682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1713792675}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12bde64b38a5813469311276bfeab967, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Harvester: {fileID: 0}
-  Miner: {fileID: 0}
-  Extractor: {fileID: 0}
-  combattext: {fileID: 0}
-  unithit: {fileID: 0}
-  selectionHighlight: {fileID: 0}
---- !u!114 &1713792683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1713792675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea5d9e114a32b04e930c2b2eef1323b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1713792684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1713792675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6340d2baab1ff174291b3a00c120f655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TheHarvesters: []
-  HasBuiltShip: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1749005740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,8 +2421,8 @@ MonoBehaviour:
   Harvester: {fileID: 0}
   Miner: {fileID: 0}
   Extractor: {fileID: 0}
+  Unithit: {fileID: 0}
   combattext: {fileID: 0}
-  unithit: {fileID: 0}
   selectionHighlight: {fileID: 0}
 --- !u!114 &1976475293
 MonoBehaviour:

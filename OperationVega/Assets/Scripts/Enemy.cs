@@ -175,7 +175,8 @@ namespace Assets.Scripts
             this.enemycontroller.SetBool("Taint", false);
             this.enemycontroller.SetTrigger("Idle");
             this.particlesystem.Play();
-
+            this.targetResource.Taint = true;
+            this.targetResource = null;
         }
 
         /// <summary>
@@ -218,10 +219,7 @@ namespace Assets.Scripts
             {
                 if (this.navagent.velocity == Vector3.zero)
                 {
-                    Debug.Log("I Tainted it");
                     this.enemycontroller.SetBool("Taint", true);
-                    this.targetResource.Taint = true;
-                    this.targetResource = null;
                     this.ChangeStates("Idle");
                     this.timetotaint = 0;
                 }

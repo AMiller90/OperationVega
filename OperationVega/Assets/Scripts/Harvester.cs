@@ -602,13 +602,6 @@ namespace Assets.Scripts
 
             this.UpdateRotation();
 
-            // If the navagent isnt looking for a current path - this helps prevent any lag when the unit is already stopped then starting to move,
-            // if the navagent is within stopping distance and its currently using the walk animation...
-            if (!this.navagent.pathPending && this.navagent.remainingDistance <= this.navagent.stoppingDistance && this.animatorcontroller.GetBool("IsWalking"))
-            {
-                this.animatorcontroller.SetBool("IsWalking", false);
-            }
-
             switch (this.theHarvesterFsm.CurrentState.Statename)
             {
                 case "Idle":
@@ -640,7 +633,7 @@ namespace Assets.Scripts
         /// </summary>
         private void InitUnit()
         {
-            this.theorb = this.transform.GetChild(2).GetChild(2).GetChild(0).gameObject;
+            this.theorb = this.transform.GetChild(1).GetChild(2).GetChild(0).gameObject;
             this.dangercolor = Color.black;
 
             this.mystats = this.GetComponent<Stats>();
