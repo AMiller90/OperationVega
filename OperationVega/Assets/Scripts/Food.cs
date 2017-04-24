@@ -1,5 +1,4 @@
 ﻿
-
 namespace Assets.Scripts
 {
 	using Assets.Scripts.Interfaces;
