@@ -100,7 +100,11 @@ namespace Assets.Scripts
 			set
 			{
 				this.state = value;
-			}
+
+                // Tainted
+                if(this.state) // Play particle system
+                    this.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+            }
 		}
 
 		/// <summary>
@@ -136,7 +140,8 @@ namespace Assets.Scripts
 				if (this.resetTimer >= 60.0f)
 				{
 					this.state = false;
-					this.resetTimer = 0.0f;
+                    this.gameObject.GetComponentInChildren<ParticleSystem>().Stop();
+                    this.resetTimer = 0.0f;
 				}
 			}
 		}
