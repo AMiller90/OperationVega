@@ -11,8 +11,7 @@ using Assets.Scripts.Managers;
 using Assets.Scripts;
 using Assets.Scripts.Controllers;
 using Assets.Scripts.Interfaces;
-
-
+using System.Linq;
 
 namespace UI
 {
@@ -257,48 +256,21 @@ namespace UI
 
             selected = false;
 
+            m_OptionsUI.GetComponentsInChildren<Text>()[1].text = "Audio Volume: " + AudioManager.ChangedVolume * 10;
             m_OptionsUI.GetComponentsInChildren<Slider>()[1].value = CameraController.MoveSpeed;
 
             this.statsbuttons = upgradepanel.GetComponentsInChildren<Button>();
             ScaleFactor();
 
             #region -- Ingame Subscribers --
-            //EventManager.Subscribe("ActivateAbility", this.OnActivateAbility);
-            //EventManager.Subscribe("Harvest", this.OnHarvest);
-            //EventManager.Subscribe("Recall", this.OnRecall);
-            //EventManager.Subscribe("CancelAction", this.OnCancelAction);
-            //EventManager.Subscribe("Close WorkShop", this.CloseWorkShop);
-            //EventManager.Subscribe("Workshop", this.OnWorkShop);
-            //EventManager.Subscribe("Craft", this.OnCraft);
-            //EventManager.Subscribe("Clear", this.OnClear);
             EventManager.Subscribe("Mine", this.OnMine);
             EventManager.Subscribe("Extract", this.OnExtract);
-            //EventManager.Subscribe("Actions", this.OnActions);
-            //EventManager.Subscribe("Crafting", this.OnCrafting);
             EventManager.Subscribe("UnitTab", this.OnUnit);
-            //EventManager.Subscribe("Build Rocket", this.OnBuild);
-            //EventManager.Subscribe("Thrusters", this.OnThrusters);
-            //EventManager.Subscribe("Player chose TC1", this.OnTC1);
-            //EventManager.Subscribe("Player chose TC2", this.OnTC2);
-            //EventManager.Subscribe("Player chose TC3", this.OnTC3);
-            //EventManager.Subscribe("Apply Chassis", this.OnChassis);
-            //EventManager.Subscribe("Cockpit", this.OnCockpit);
-            //EventManager.Subscribe("Player chose CP1", this.OnCP1);
-            //EventManager.Subscribe("Player chose CP2", this.OnCP2);
-            //EventManager.Subscribe("Player chose CP3", this.OnCP3);
-            //EventManager.Subscribe("Apply Wings", this.OnWings);
-            //EventManager.Subscribe("Player chose WC1", this.OnWC1);
-            //EventManager.Subscribe("Player chose WC2", this.OnWC2);
-            //EventManager.Subscribe("Player chose WC3", this.OnWC3);
             EventManager.Subscribe("OnMChoice", this.OnMChoice);
             EventManager.Subscribe("OnHChoice", this.OnHChoice);
             EventManager.Subscribe("OnEChoice", this.OnEChoice);
             EventManager.Subscribe("Player choose yes", this.OnYes);
             EventManager.Subscribe("Player choose no", this.OnNo);
-            //EventManager.Subscribe("SAExtract", this.OnSAExtract);
-            //EventManager.Subscribe("SAMiner", this.OnSAMiner);
-            //EventManager.Subscribe("SAUnit", this.OnSAUnit);
-            //EventManager.Subscribe("SAHarvest", this.OnSAHarvest);
             #endregion
 
             #region -- Main Menu Subscribers --
@@ -319,14 +291,6 @@ namespace UI
             #endregion
 
             EventManager.Publish("CameraSpeedSlider");
-            #region -- Crafting Subscribers --
-            //EventManager.Subscribe("Minerals", this.OnMinerals);
-            //EventManager.Subscribe("Food", this.OnFood);
-            //EventManager.Subscribe("CookedFood", this.OnCookedFood);
-            //EventManager.Subscribe("Gas", this.OnGas);
-            //EventManager.Subscribe("Fuel", this.OnFuel);
-            //EventManager.Subscribe("Steel", this.OnSteel);
-            #endregion
 
             #region --Upgrades--
             EventManager.Subscribe("MaxHealth", this.OnMaxHealth);
@@ -347,42 +311,14 @@ namespace UI
         protected void OnDestroy()
         {
             #region -- Ingame Unsubscribers --
-            //EventManager.UnSubscribe("ActivateAbility", this.OnActivateAbility);
-            //EventManager.UnSubscribe("Harvest", this.OnHarvest);
-            //EventManager.UnSubscribe("Recall", this.OnRecall);
-            //EventManager.UnSubscribe("CancelAction", this.OnCancelAction);
-            //EventManager.UnSubscribe("Workshop", this.OnWorkShop);
-            //EventManager.UnSubscribe("Close WorkShop", this.CloseWorkShop);
-            //EventManager.UnSubscribe("Craft", this.OnCraft);
-            //EventManager.UnSubscribe("Clear", this.OnClear);
             EventManager.UnSubscribe("Mine", this.OnMine);
             EventManager.UnSubscribe("Extract", this.OnExtract);
-            //EventManager.UnSubscribe("Actions", this.OnActions);
-            //EventManager.UnSubscribe("Crafting", this.OnCrafting);
             EventManager.UnSubscribe("UnitTab", this.OnUnit);
-            //EventManager.UnSubscribe("Build Rocket", this.OnBuild);
-            //EventManager.UnSubscribe("Thrusters", this.OnThrusters);
-            //EventManager.UnSubscribe("Player chose TC1", this.OnTC1);
-            //EventManager.UnSubscribe("Player chose TC2", this.OnTC2);
-            //EventManager.UnSubscribe("Player chose TC2", this.OnTC3);
-            //EventManager.UnSubscribe("Apply Chassis", this.OnChassis);
-            //EventManager.UnSubscribe("Cockpit", this.OnCockpit);
-            //EventManager.UnSubscribe("Player chose CP1", this.OnCP1);
-            //EventManager.UnSubscribe("Player chose CP2", this.OnCP2);
-            //EventManager.UnSubscribe("Player chose CP3", this.OnCP3);
-            //EventManager.UnSubscribe("Apply Wings", this.OnWings);
-            //EventManager.UnSubscribe("WingChoice1", this.OnWC1);
-            //EventManager.UnSubscribe("WingChoice2", this.OnWC2);
-            //EventManager.UnSubscribe("WingChoice3", this.OnWC2);
             EventManager.UnSubscribe("OnMChoice", this.OnMChoice);
             EventManager.UnSubscribe("OnHChoice", this.OnHChoice);
             EventManager.UnSubscribe("OnEChoice", this.OnEChoice);
             EventManager.UnSubscribe("Player choose yes", this.OnYes);
             EventManager.UnSubscribe("Player choose no", this.OnNo);
-            //EventManager.UnSubscribe("SAExtract", this.OnSAExtract);
-            //EventManager.UnSubscribe("SAMiner", this.OnSAMiner);
-            //EventManager.UnSubscribe("SAUnit", this.OnSAUnit);
-            //EventManager.UnSubscribe("SAHarvest", this.OnSAHarvest);
             #endregion
 
             #region -- Main Menu Unsubscribers --
@@ -398,15 +334,6 @@ namespace UI
             EventManager.UnSubscribe("CustomizeClose", this.OnCustomizeClose);
             EventManager.UnSubscribe("CustomizeRestore", this.OnCustomRestore);
             EventManager.UnSubscribe("ObjectiveClick", this.OnObjective);
-            #endregion
-
-            #region -- Crafting Unsubscribers --
-            //EventManager.UnSubscribe("Minerals", this.OnMinerals);
-            //EventManager.UnSubscribe("Food", this.OnFood);
-            //EventManager.UnSubscribe("CookedFood", this.OnCookedFood);
-            //EventManager.UnSubscribe("Gas", this.OnGas);
-            //EventManager.UnSubscribe("Fuel", this.OnFuel);
-            //EventManager.UnSubscribe("Steel", this.OnSteel);
             #endregion
 
             #region -- Upgrades Unsubscribers --
@@ -669,27 +596,85 @@ namespace UI
             {
                 if (UnitController.PurchaseHarvester)
                 {
+                    UnitController.PurchaseHarvester = false;
+
+                    // Just return can't buy anything
+                    if (User.HarvesterCount >= User.MaxCountOfUnits) return;
+
+                    int total = User.HarvesterCount + this.numbertobuy;
+
+                    // If what the user wants to buy will total greater than 30
+                    if (total > User.MaxCountOfUnits)
+                    {
+                        // Subtract the difference of how many are already on the field from the max
+                        // this will equal the max number they can buy.
+                        this.numbertobuy = User.MaxCountOfUnits - User.HarvesterCount;
+                        this.StartCoroutine(
+                            UnitController.Self.CombatText(
+                                null,
+                                Color.white,
+                                "Max harvesters on field!"));
+
+                    }
                     for (int i = 0; i < this.numbertobuy; i++)
                     {
                         UnitController.Self.SpawnUnit(UnitController.Self.Harvester);
                     }
-                    UnitController.PurchaseHarvester = false;
                 }
                 else if (UnitController.PurchaseExtractor)
                 {
+                    UnitController.PurchaseExtractor = false;
+
+                    // Just return can't buy anything
+                    if (User.ExtractorCount >= User.MaxCountOfUnits) return;
+
+                    int total = User.ExtractorCount + this.numbertobuy;
+
+                    // If what the user wants to buy will total greater than 30
+                    if (total > User.MaxCountOfUnits)
+                    {
+                        // Subtract the difference of how many are already on the field from the max
+                        // this will equal the max number they can buy.
+                        this.numbertobuy = User.MaxCountOfUnits - User.ExtractorCount;
+                        this.StartCoroutine(
+                            UnitController.Self.CombatText(
+                                null,
+                                Color.white,
+                                "Max extractors on field!"));
+                    }
+
                     for (int i = 0; i < this.numbertobuy; i++)
                     {
                         UnitController.Self.SpawnUnit(UnitController.Self.Extractor);
                     }
-                    UnitController.PurchaseExtractor = false;
+
                 }
                 else if (UnitController.PurchaseMiner)
                 {
+                    UnitController.PurchaseMiner = false;
+
+                    // Just return can't buy anything
+                    if (User.MinerCount >= User.MaxCountOfUnits) return;
+
+                    int total = User.MinerCount + this.numbertobuy;
+
+                    // If what the user wants to buy will total greater than 30
+                    if (total > User.MaxCountOfUnits)
+                    {
+                        // Subtract the difference of how many are already on the field from the max
+                        // this will equal the max number they can buy.
+                        this.numbertobuy = User.MaxCountOfUnits - User.MinerCount;
+                        this.StartCoroutine(
+                            UnitController.Self.CombatText(
+                                null,
+                                Color.white,
+                                "Max miners on field!"));
+                    }
+
                     for (int i = 0; i < this.numbertobuy; i++)
                     {
                         UnitController.Self.SpawnUnit(UnitController.Self.Miner);
                     }
-                    UnitController.PurchaseMiner = false;
                 }
 
                 User.FoodCount -= this.numbertobuy * 5;
@@ -701,63 +686,6 @@ namespace UI
             }
         }
 
-
-
-
-        //public void OnActionsClick()
-        //{
-        //    EventManager.Publish("Actions");
-        //}
-
-        //private void OnActions()
-        //{
-        //    //If true set values to zero
-        //    if (revertactionstab)
-        //    {
-        //        m_ActionsTAB.offsetMax = new Vector2(m_ActionsTAB.offsetMax.x, 0);
-        //        m_ActionsTAB.offsetMin = new Vector2(m_ActionsTAB.offsetMin.x, 0);
-
-        //        revertactionstab = false;
-        //    }
-        //    //If not true set to this position
-        //    else if (!revertactionstab)
-        //    {
-        //        revertactionstab = true;
-
-        //        m_ActionsTAB.offsetMax = new Vector2(m_ActionsTAB.offsetMax.x, Scalefactor);
-        //        m_ActionsTAB.offsetMin = new Vector2(m_ActionsTAB.offsetMin.x, -115);
-        //    }
-        //    Debug.Log("Move Actions Tab down");
-        //}
-
-        //public void OnCraftingClick()
-        //{
-
-        //    EventManager.Publish("Crafting");
-        //}
-
-        //private void OnCrafting()
-        //{
-
-        //    if (revertcraftingtab)
-        //    {
-        //        m_CraftingTAB.offsetMax = new Vector2(m_CraftingTAB.offsetMax.x, 0);
-        //        m_CraftingTAB.offsetMin = new Vector2(m_CraftingTAB.offsetMin.x, 0);
-              
-        //        revertcraftingtab = false;
-
-        //    }
-        //    else if (!revertcraftingtab)
-        //    {
-        //        revertcraftingtab = true;
-
-        //        m_CraftingTAB.offsetMax = new Vector2(m_CraftingTAB.offsetMax.x, Scalefactor);
-        //        m_CraftingTAB.offsetMin = new Vector2(m_CraftingTAB.offsetMin.x, -115);
-        //    }
-
-
-        //    Debug.Log("Move Crafting Tab down");
-        //}
         public void OnObjectiveClick()
         {
             EventManager.Publish("ObjectiveClick");
@@ -790,247 +718,7 @@ namespace UI
 
             Debug.Log("Move Unit Tab down");
         }
-        //public void OnActivateAbilityClick()
-        //{
-        //    EventManager.Publish("ActivateAbility");
-        //}
-        //private void OnActivateAbility()
-        //{
-        //    //Function will be use to rally upon click.
-        //    Debug.Log("Activate Ability ");
-        //}
-        //public void OnHarvestClick()
-        //{
-        //    EventManager.Publish("Harvest");
-        //}
-        //private void OnHarvest()
-        //{
-        //    //Function will be use to harvest upon click.
-        //    UnitController.Self.Harvest();
-        //    Debug.Log("Begin Harvesting");
-        //}
-        //public void OnRecallClick()
-        //{
-        //    EventManager.Publish("Recall");
-        //}
-
-        //private void OnRecall()
-        //{
-        //    UnitController.Self.CallHome();
-        //    //Function will be use to recall upon click.
-        //    Debug.Log("Recall to barracks.");
-        //}
-        //public void OnCancelActionClick()
-        //{
-        //    EventManager.Publish("CancelAction");
-        //}
-        //private void OnCancelAction()
-        //{
-        //    UnitController.Self.CancelAction();
-        //    //Function will cancel previous action upon click.
-        //    Debug.Log("Cancel Previous Action");
-        //}
-
-        //public void OnCraftClick()
-        //{
-
-        //    //This function will run the craft function
-        //    EventManager.Publish("Craft");
-        //}
-        //private void OnCraft()
-        //{
-        //    //If Input is minerals and gas, produce fuel.
-        //    if(Input1.sprite == minerals.sprite && Input2.sprite == gas.sprite)
-        //    {
-        //        Output.sprite = fuel.sprite;
-        //        if (User.MineralsCount > 0 && User.GasCount > 0)
-        //        {
-        //            User.MineralsCount--;
-        //            User.GasCount--;
-        //            User.FuelCount++;
-        //        }
-        //        else if (User.MineralsCount <= 0 && User.GasCount <= 0)
-        //        {
-        //            User.MineralsCount = 0;
-        //            User.GasCount = 0;
-        //            Output.sprite = Xbutton.sprite;
-
-        //        }
-        //        else
-        //        {
-        //            Output.sprite = Xbutton.sprite;
-        //        }
-        //        ObjectiveManager.Instance.TheObjectives[ObjectiveType.Craft].Currentvalue++;
-        //    }
-        //    if(Input2.sprite == minerals.sprite && Input1.sprite == gas.sprite)
-        //    {
-        //        Output.sprite = fuel.sprite;
-        //        if (User.MineralsCount > 0 && User.GasCount > 0)
-        //        {
-        //            User.MineralsCount--;
-        //            User.GasCount--;
-        //            User.FuelCount++;
-        //        }
-        //        else if (User.MineralsCount <= 0 && User.GasCount <= 0)
-        //        {
-        //            User.MineralsCount = 0;
-        //            User.GasCount = 0;
-        //            Output.sprite = Xbutton.sprite;
-
-        //        }
-        //        else
-        //        {
-        //            Output.sprite = Xbutton.sprite;
-        //        }
-        //        ObjectiveManager.Instance.TheObjectives[ObjectiveType.Craft].Currentvalue++;
-        //    }
-
-        //    //If Input is minerals and food, produce steel.
-        //    if(Input1.sprite == minerals.sprite && Input2.sprite == food.sprite)
-        //    {
-        //        Output.sprite = steel.sprite;
-        //        if (User.MineralsCount > 0 && User.FoodCount > 0)
-        //        {
-        //            User.MineralsCount--;
-        //            User.FoodCount--;
-        //            User.SteelCount++;
-        //        }
-        //        else if (User.MineralsCount <= 0 && User.FoodCount <= 0)
-        //        {
-        //            User.MineralsCount = 0;
-        //            User.FoodCount = 0;
-        //            Output.sprite = Xbutton.sprite;
-
-        //        }
-        //        else
-        //        {
-        //            Output.sprite = Xbutton.sprite;
-        //        }
-        //        ObjectiveManager.Instance.TheObjectives[ObjectiveType.Craft].Currentvalue++;
-        //    }
-        //    if(Input2.sprite == minerals.sprite && Input1.sprite == food.sprite)
-        //    {
-        //        Output.sprite = steel.sprite;
-        //        if (User.MineralsCount > 0 && User.FoodCount > 0)
-        //        {
-        //            User.MineralsCount--;
-        //            User.FoodCount--;
-        //            User.SteelCount++;
-        //        }
-        //        else if (User.MineralsCount <= 0 && User.FoodCount <= 0)
-        //        {
-        //            User.MineralsCount = 0;
-        //            User.FoodCount = 0;
-        //            Output.sprite = Xbutton.sprite;
-
-        //        }
-        //        else
-        //        {
-        //            Output.sprite = Xbutton.sprite;
-        //        }
-        //        ObjectiveManager.Instance.TheObjectives[ObjectiveType.Craft].Currentvalue++;
-        //    }
-
-        //    //If Input is food and gas, produce Cooked Food.
-        //    if(Input1.sprite == food.sprite && Input2.sprite == gas.sprite)
-        //    {
-        //        Output.sprite = cookedFood.sprite;
-        //        if (User.FoodCount > 0 && User.GasCount > 0)
-        //        {
-        //            User.FoodCount--;
-        //            User.GasCount--;
-        //            User.CookedFoodCount++;
-        //        }
-        //        else if (User.FoodCount <= 0 && User.GasCount <= 0)
-        //        {
-        //            User.FoodCount = 0;
-        //            User.GasCount = 0;
-        //            Output.sprite = Xbutton.sprite;
-
-        //        }
-        //        else
-        //        {
-        //            Output.sprite = Xbutton.sprite;
-        //        }
-        //        ObjectiveManager.Instance.TheObjectives[ObjectiveType.Craft].Currentvalue++;
-        //    }
-
-        //    if(Input2.sprite == food.sprite && Input1.sprite == gas.sprite)
-        //    {
-        //        Output.sprite = cookedFood.sprite;
-        //        if (User.FoodCount > 0 && User.GasCount > 0)
-        //        {
-        //            User.FoodCount--;
-        //            User.GasCount--;
-        //            User.CookedFoodCount++;
-        //        }
-        //        else if (User.FoodCount <= 0 && User.GasCount <= 0)
-        //        {
-        //            User.FoodCount = 0;
-        //            User.GasCount = 0;
-        //            Output.sprite = Xbutton.sprite;
-
-        //        }
-        //        else
-        //        {
-        //            Output.sprite = Xbutton.sprite;
-        //        }
-        //        ObjectiveManager.Instance.TheObjectives[ObjectiveType.Craft].Currentvalue++;
-        //    }
-            
-            
-            
-        //    Debug.Log("Craft");
-        //}
-        //public void OnClearClick()
-        //{
-        //    EventManager.Publish("Clear");
-        //}
-        //private void OnClear()
-        //{
-          
-        //    if (Input1.sprite == minerals.sprite|| Input2.sprite == minerals.sprite)
-        //    {               
-        //        //User.MineralsCount++;
-        //    }
-        //    if(Input1.sprite == steel.sprite || Input2.sprite == steel.sprite)
-        //    {              
-        //        //User.SteelCount++;
-        //    }
-        //    if(Input1.sprite == gas.sprite || Input2.sprite == gas.sprite)
-        //    {            
-        //        //User.GasCount++;
-        //    }
-        //    if(Input1.sprite == fuel.sprite || Input2.sprite == fuel.sprite)
-        //    {              
-        //        //User.FuelCount++;
-        //    }
-
-        //    List<Image> images = new List<Image>() { Input1, Input2, Output };
-        //    foreach (Image image in images)
-        //        image.sprite = m_defaultCraftSprite;
-
-        //    input1b = true;
-        //    input2b = true;
-
-
-
-
-
-
-        //    //This function will clear items in the craft.
-        //    Debug.Log("Clear");
-        //}
-        //public void OnWorkShopClick()
-        //{
-        //    EventManager.Publish("Workshop");
-        //}
-        //private void OnWorkShop()
-        //{
-        //    m_WorkshopUI.gameObject.SetActive(true);
-        //    //This function will bring up the workshop within the game.
-        //    Debug.Log("Workshop");
-        //}
+             
         public void OnMineClick()
         {
             EventManager.Publish("Mine");
@@ -1055,6 +743,7 @@ namespace UI
         }
         private void OnOptions()
         {
+            m_OptionsUI.GetComponentsInChildren<Slider>()[0].value = AudioManager.Self.Volume * 10;
             m_OptionsUI.gameObject.SetActive(true);
             m_SettingsUI.gameObject.SetActive(false);
             Debug.Log("Options Menu");
@@ -1072,17 +761,6 @@ namespace UI
             Debug.Log("Close Options");
         }
 
-        //public void CloseWorkShopClick()
-        //{
-        //    EventManager.Publish("Close WorkShop");
-        //}
-        //private void CloseWorkShop()
-        //{
-        //    //This function will close work shop menu
-        //    m_WorkshopUI.gameObject.SetActive(false);
-        //    Debug.Log("Close Workshop Menu");
-
-        //}
         public void NewGameClick()
         {
             EventManager.Publish("NewGame");
@@ -1139,6 +817,10 @@ namespace UI
         }
         private void OnVolumeSlider()
         {
+            AudioManager.Self.Volume = m_OptionsUI.GetComponentsInChildren<Slider>()[0].value / 10;
+            AudioManager.ChangedVolume = AudioManager.Self.Volume;
+            m_OptionsUI.GetComponentsInChildren<Text>()[1].text = "Audio Volume: " + AudioManager.ChangedVolume * 10;
+
             m_OptionsUI.GetComponentsInChildren<Text>()[2].text = "Audio Volume";
             Debug.Log("Volume Slider");
         }
@@ -1202,6 +884,9 @@ namespace UI
         }
         private void OnMChoice()
         {
+            List<Miner> miners = GameObject.FindObjectsOfType<Miner>().ToList();
+
+            if (miners.Count >= 30) return;
             //Spawns Miner Upon clicking Yes/No
             m_AreyousureUI.gameObject.SetActive(true);
             UnitController.PurchaseMiner = true;
@@ -1213,6 +898,9 @@ namespace UI
         }
         private void OnHChoice()
         {
+            List<Harvester> harvesters = GameObject.FindObjectsOfType<Harvester>().ToList();
+
+            if (harvesters.Count >= 30) return;
             //Spawns Harvester Upon clicking Yes/No
             m_AreyousureUI.gameObject.SetActive(true);
             UnitController.PurchaseHarvester = true;
@@ -1224,6 +912,9 @@ namespace UI
         }
         private void OnEChoice()
         {
+            List<Extractor> extractors = GameObject.FindObjectsOfType<Extractor>().ToList();
+
+            if (extractors.Count >= 30) return;
             //Spawns Extracter Upon clicking Yes/No
             m_AreyousureUI.gameObject.SetActive(true);
             UnitController.PurchaseExtractor = true;
@@ -1259,344 +950,8 @@ namespace UI
             Debug.Log("Quit Game");
         }
         #endregion
-
-        #region -- Crafting -- 
-        //public void Minerals()
-        //{
-        //    EventManager.Publish("Minerals");
-        //}
-        //private void OnMinerals()
-        //{
-        //    //Will Change the source image to the first craft slot
-        //    //Second Slot if first one is selected.
-        //    if (input1b)
-        //    {
-        //        Input1.sprite = minerals.sprite;
-
-        //        input1b = false;
-        //    }
-        //    else if (!input1b)
-        //    {
-        //        Input2.sprite = minerals.sprite;
-
-        //        input1b = true;
-        //    }
-        //    Debug.Log("Minerals");
-        //}
-
-        //public void Food()
-        //{
-
-        //    EventManager.Publish("Food");
-        //}
-        //private void OnFood()
-        //{
-        //    //Will Change the source image to the first craft slot
-        //    //Second Slot if first one is selected.
-        //    if (input1b)
-        //    {
-        //        Input1.sprite = food.sprite;
-
-        //        input1b = false;
-        //    }
-        //    else if (!input1b)
-        //    {
-        //        Input2.sprite = food.sprite;
-
-        //        input2b = false;
-        //    }
-        //    Debug.Log("Food");
-        //}
-
-        //public void CookedFood()
-        //{
-        //    EventManager.Publish("CookedFood");
-        //}
-
-        //private void OnCookedFood()
-        //{
-        //    //Will Change the source image to the first craft slot
-        //    //Second Slot if first one is selected.
-        //    if (User.CookedFoodCount > 0)
-        //    {
-        //        Vector3 mousePosition;
-        //        mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-        //        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        //        this.foodinstance = Instantiate(cookedfoodPrefab, mousePosition, Quaternion.identity);
-        //        Debug.Log("Cooked Food");
-
-        //        User.CookedFoodCount--;
-        //    }
-        //}
-
-        //public void Gas()
-        //{
-        //    EventManager.Publish("Gas");
-        //}
-
-        //private void OnGas()
-        //{
-        //    //Will Change the source image to the first craft slot
-        //    //Second Slot if first one is selected.
-        //    if (input1b)
-        //    {
-        //        Input1.sprite = gas.sprite;
-
-        //        input1b = false;
-        //    }
-        //    else if (!input1b)
-        //    {
-        //        Input2.sprite = gas.sprite;
-
-        //        input2b = false;
-        //    }
-        //    Debug.Log("Gas");
-        //}
-
-        //public void Fuel()
-        //{
-        //    EventManager.Publish("Fuel");
-        //}
-
-        //private void OnFuel()
-        //{
-        //    //Will Change the source image to the first craft slot
-
-        //    if (input1b)
-        //    {
-        //        Input1.sprite = fuel.sprite;
-
-        //        input1b = false;
-        //    }
-        //    else if (!input1b)
-        //    {
-        //        Input2.sprite = fuel.sprite;
-
-        //        input2b = false;
-        //    }
-        //    //Second Slot if first one is selected.
-        //    Debug.Log("Fuel");
-        //}
-        //public void Steel()
-        //{
-        //    EventManager.Publish("Steel");
-        //}
-
-        //private void OnSteel()
-        //{
-        //    Debug.Log("Steel");
-        //}
-
-        #endregion
         #endregion
 
-
-        #region -- WorkShop --
-        //public void OnBuildClick()
-        //{
-        //    EventManager.Publish("Build Rocket");
-        //}
-        //private void OnBuild()
-        //{
-        //    //Function that will craft the ship when all parts are obtained.
-        //    Debug.Log("Build Rocket");
-        //}
-        //public void OnThrustersClick()
-        //{
-        //    EventManager.Publish("Thrusters");
-        //}
-        //private void OnThrusters()
-        //{
-        //    if (undo1)
-        //    {
-        //        m_ThrusterChoice.gameObject.SetActive(true);
-
-        //        undo1 = false;
-        //    }
-        //    else if (!undo1)
-        //    {
-        //        m_ThrusterChoice.gameObject.SetActive(false);
-        //        undo1 = true;
-        //    }
-
-        //    //Function that will apply the selected thruster on the ship
-        //    Debug.Log("Apply Thrusters");
-        //}
-        //public void OnChassisClick()
-        //{
-        //    EventManager.Publish("Chassis");
-        //}
-        //private void OnChassis()
-        //{
-
-        //    //Function that will apply the selected chassis on the ship
-        //    Debug.Log("Apply Chassis");
-        //}
-        //public void OnCockpitClick()
-        //{
-        //    EventManager.Publish("Cockpit");
-        //}
-        //private void OnCockpit()
-        //{
-        //    if (undo2)
-        //    {
-        //        m_CockpitChoice.gameObject.SetActive(true);
-
-        //        undo2 = false;
-        //    }
-        //    else if (!undo2)
-        //    {
-        //        m_CockpitChoice.gameObject.SetActive(false);
-
-        //        undo2 = true;
-        //    }
-        //    //Function that will apply the selected cockpit on the ship
-        //    Debug.Log("Apply Cockpit");
-        //}
-        //public void OnWingsClick()
-        //{
-
-        //    EventManager.Publish("Apply Wings");
-        //}
-        //private void OnWings()
-        //{
-        //    if (undo3)
-        //    {
-        //        m_WingChoice.gameObject.SetActive(true);
-
-        //        undo3 = false;
-        //    }
-        //    else if (!undo3)
-        //    {
-        //        m_WingChoice.gameObject.SetActive(false);
-
-        //        undo3 = true;
-        //    }
-        //    //Function that will apply the selected wing on the ship
-        //    Debug.Log("Apply Wings");
-        //}
-        //public void OnWC1Click()
-        //{
-        //    EventManager.Publish("Player chose WC1");
-        //}
-        //private void OnWC1()
-        //{
-        //    Debug.Log("Player chose WC1");
-        //}
-        //public void OnWC2Click()
-        //{
-        //    EventManager.Publish("Player chose WC2");
-
-        //}
-        //private void OnWC2()
-        //{
-        //    Debug.Log("Player chose WC2");
-        //}
-        //public void OnWC3Click()
-        //{
-        //    EventManager.Publish("Player chose WC3");
-        //}
-        //private void OnWC3()
-        //{
-        //    Debug.Log("Player chose WC3");
-        //}
-        //public void OnCP1Click()
-        //{
-        //    EventManager.Publish("Player chose CP1");
-        //}
-        //private void OnCP1()
-        //{
-        //    Debug.Log("Player chose Cockpit1");
-        //}
-        //public void OnCP2Click()
-        //{
-        //    EventManager.Publish("Player chose CP2");
-        //}
-        //private void OnCP2()
-        //{
-        //    Debug.Log("Player chose Cockpit2");
-        //}
-        //public void OnCP3Click()
-        //{
-        //    EventManager.Publish("Player chose CP3");
-        //}
-        //private void OnCP3()
-        //{
-        //    Debug.Log("Player chose Cockpit3");
-        //}
-        //public void OnTC1Click()
-        //{
-        //    EventManager.Publish("Player chose TC1");
-        //}
-        //private void OnTC1()
-        //{
-        //    Debug.Log("Player chose Thrust1");
-        //}
-        //public void OnTC2Click()
-        //{
-        //    EventManager.Publish("Player chose TC2");
-        //}
-        //private void OnTC2()
-        //{
-        //    Debug.Log("Player chose Thrust2");
-        //}
-        //public void OnTC3Click()
-        //{
-        //    EventManager.Publish("Player chose TC3");
-        //}
-        //private void OnTC3()
-        //{
-        //    Debug.Log("Player chose Thrust3");
-        //}
-
-
-
-        #endregion
-
-        #region -- SelectAll --
-        //public void OnSAExtractClick()
-        //{
-        //    EventManager.Publish("SAExtract");
-        //}
-        //private void OnSAExtract()
-        //{
-        //    //Calls the SelectAll Extractors function within the UnitController.
-        //    UnitController.Self.SelectAllExtractors();
-        //    Debug.Log("Select All Extract");
-        //}
-
-        //public void OnSAMinerClick()
-        //{
-        //    EventManager.Publish("SAMiner");
-        //}
-        //private void OnSAMiner()
-        //{
-        //    //Calls the SelectAll Miners function within the UnitController.
-        //    UnitController.Self.SelectAllMiners();
-        //    Debug.Log("Select All Miner");
-        //}
-
-        //public void OnSAUnitClick()
-        //{
-        //    EventManager.Publish("SAUnit");
-        //}
-        //private void OnSAUnit()
-        //{
-        //    //Calls the Select All Units function within the UnitController.
-        //    UnitController.Self.SelectAllUnits();
-        //    Debug.Log("Select All Units");
-        //}
-        //public void OnSAHarvestClick()
-        //{
-        //    EventManager.Publish("SAHarvest");
-        //}
-        //private void OnSAHarvest()
-        //{
-        //    //Calls the Select All Harvesters function within the UnitController.
-        //    UnitController.Self.SelectAllHarvesters();
-        //    Debug.Log("Select All Harvesters");
-        //}
-        #endregion
 
         #region -- Upgrades --
         public void OnMaxHealthClick()
@@ -1655,8 +1010,7 @@ namespace UI
         {
             EventManager.Publish("Defense");
         }
-
-       
+               
         private void OnDefense()
         {
             //Updates the Defense when the button is clicked.
