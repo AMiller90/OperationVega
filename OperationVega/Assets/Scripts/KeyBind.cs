@@ -157,7 +157,7 @@ namespace Assets.Scripts
             this.thekeybinddictionary["BuyMiner"] = KeyCode.Alpha2;
             this.thekeybinddictionary["BuyHarvester"] = KeyCode.Alpha3;
             this.thekeybinddictionary["Controls"] = KeyCode.Slash;
-            this.thekeybinddictionary["Save"] = KeyCode.F5;
+            this.thekeybinddictionary["Instructions"] = KeyCode.F5;
 
             // There are 20 buttons but only the first 18 can be modified.
             // This excludes the x button and restore to default button.
@@ -239,7 +239,7 @@ namespace Assets.Scripts
             this.thekeybinddictionary.Add("BuyMiner", KeyCode.Alpha2);
             this.thekeybinddictionary.Add("BuyHarvester", KeyCode.Alpha3);
             this.thekeybinddictionary.Add("Controls", KeyCode.Slash);
-            this.thekeybinddictionary.Add("Save", KeyCode.F5);
+            this.thekeybinddictionary.Add("Instructions", KeyCode.F5);
 
             this.keybindmapping.Add("Settings", delegate { EventManager.Publish("Settings"); });
             this.keybindmapping.Add("Objectives", delegate { EventManager.Publish("ObjectiveClick"); });
@@ -258,7 +258,7 @@ namespace Assets.Scripts
             this.keybindmapping.Add("BuyMiner", delegate { EventManager.Publish("OnMChoice"); });
             this.keybindmapping.Add("BuyHarvester", delegate { EventManager.Publish("OnHChoice"); });
             this.keybindmapping.Add("Controls", delegate { EventManager.Publish("Customize"); });
-            this.keybindmapping.Add("Save", delegate { EventManager.Publish("Empty"); });
+            this.keybindmapping.Add("Instructions", delegate { EventManager.Publish("Instructions"); });
 
             // Load the hotkeys - If they can't be loaded then make the keys
             if (!this.LoadHotkeys())

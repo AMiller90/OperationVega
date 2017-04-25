@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: a6bc808fe35fd294bb3c1555bf227aa6
-timeCreated: 1487174504
+guid: c635bb4ddec98e546b8e61ac09fe2615
+timeCreated: 1493131656
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: CONTINUEBUTTON
-    21300002: NEWGAMEBUTTON
-    21300004: OPTIONSSTARTMENUBUTTON
-    21300006: QUITBUTTON
+    21300000: Instructions
+    21300002: NewGame
+    21300004: Options
+    21300006: Quit
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -31,7 +31,7 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapMode: 1
@@ -70,14 +70,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Android
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   - buildTarget: WebGL
     maxTextureSize: 2048
     textureFormat: -1
@@ -90,7 +82,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CONTINUEBUTTON
+      name: Instructions
       rect:
         serializedVersion: 2
         x: 1272
@@ -103,7 +95,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: NEWGAMEBUTTON
+      name: NewGame
       rect:
         serializedVersion: 2
         x: 1272
@@ -116,7 +108,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: OPTIONSSTARTMENUBUTTON
+      name: Options
       rect:
         serializedVersion: 2
         x: 1272
@@ -129,7 +121,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: QUITBUTTON
+      name: Quit
       rect:
         serializedVersion: 2
         x: 1271

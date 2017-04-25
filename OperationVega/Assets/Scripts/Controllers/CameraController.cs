@@ -97,23 +97,23 @@ namespace Assets.Scripts.Controllers
             }
             if (Input.GetKey(KeyCode.A))
             {
-                this.transform.position += -this.transform.right * MoveSpeed * Time.deltaTime;
+                Camera.main.transform.position += -Camera.main.transform.right * MoveSpeed * Time.deltaTime;
 
                 // Clamp the position
-                this.transform.position = new Vector3(
-                Mathf.Clamp(this.transform.position.x, -150, 200),
-                this.transform.position.y,
-                Mathf.Clamp(this.transform.position.z, -170, 220));
+                Camera.main.transform.position = new Vector3(
+                Mathf.Clamp(Camera.main.transform.position.x, -150, 200),
+                Camera.main.transform.position.y,
+                Mathf.Clamp(Camera.main.transform.position.z, -170, 220));
             }
             if (Input.GetKey(KeyCode.D))
             {
-                this.transform.position += this.transform.right * MoveSpeed * Time.deltaTime;
+                Camera.main.transform.position += Camera.main.transform.right * MoveSpeed * Time.deltaTime;
 
                 // Clamp the position
-                this.transform.position = new Vector3(
-                Mathf.Clamp(this.transform.position.x, -150, 200),
-                this.transform.position.y,
-                Mathf.Clamp(this.transform.position.z, -170, 220));
+                Camera.main.transform.position = new Vector3(
+                Mathf.Clamp(Camera.main.transform.position.x, -150, 200),
+                Camera.main.transform.position.y,
+                Mathf.Clamp(Camera.main.transform.position.z, -170, 220));
             }
 
             // Arrow Keys
@@ -143,23 +143,23 @@ namespace Assets.Scripts.Controllers
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                this.transform.position += -this.transform.right * MoveSpeed * Time.deltaTime;
+                Camera.main.transform.position += -Camera.main.transform.right * MoveSpeed * Time.deltaTime;
 
                 // Clamp the position
-                this.transform.position = new Vector3(
-                Mathf.Clamp(this.transform.position.x, -150, 200),
-                this.transform.position.y,
-                Mathf.Clamp(this.transform.position.z, -170, 220));
+                Camera.main.transform.position = new Vector3(
+                Mathf.Clamp(Camera.main.transform.position.x, -150, 200),
+                Camera.main.transform.position.y,
+                Mathf.Clamp(Camera.main.transform.position.z, -170, 220));
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                this.transform.position += this.transform.right * MoveSpeed * Time.deltaTime;
+                Camera.main.transform.position += Camera.main.transform.right * MoveSpeed * Time.deltaTime;
 
                 // Clamp the position
-                this.transform.position = new Vector3(
-                Mathf.Clamp(this.transform.position.x, -150, 200),
-                this.transform.position.y,
-                Mathf.Clamp(this.transform.position.z, -170, 220));
+                Camera.main.transform.position = new Vector3(
+                Mathf.Clamp(Camera.main.transform.position.x, -150, 200),
+                Camera.main.transform.position.y,
+                Mathf.Clamp(Camera.main.transform.position.z, -170, 220));
             }
 
             // Reset the camera 

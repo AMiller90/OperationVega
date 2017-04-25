@@ -15,6 +15,7 @@ public class CreditsText : MonoBehaviour, IPointerClickHandler
     {
         
     }
+
     private void Update()
     {
         if(this.canrotate)
