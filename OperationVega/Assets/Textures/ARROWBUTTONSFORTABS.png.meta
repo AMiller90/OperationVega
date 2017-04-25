@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: 93ae4f5a4f493914fa7c243524ace7f0
-timeCreated: 1488819317
+guid: 819cec8ef9ffb6646897291bc955c35b
+timeCreated: 1493156239
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: UNITSBUTTON_0
-    21300002: UNITSBUTTON_1
+    21300000: ARROWBUTTONSFORTABS_RIGHT
+    21300002: ARROWBUTTONSFORTABS_LEFT
+    21300004: ARROWBUTTONSFORTABS_DOWN
+    21300006: ARROWBUTTONSFORTABS_UP
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -29,7 +31,7 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapMode: 1
@@ -38,10 +40,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
-  alignment: 9
-  spritePivot: {x: 0.44559717, y: 0.24583896}
-  spriteBorder: {x: 716, y: 221, z: 924, w: 765}
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -80,26 +82,52 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UNITSBUTTON_0
+      name: ARROWBUTTONSFORTABS_RIGHT
       rect:
         serializedVersion: 2
-        x: 717
-        y: 221
-        width: 279
-        height: 95
+        x: 4
+        y: 232
+        width: 656
+        height: 72
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UNITSBUTTON_1
+      name: ARROWBUTTONSFORTABS_LEFT
       rect:
         serializedVersion: 2
-        x: 776
-        y: 251
-        width: 163
-        height: 36
+        x: 4
+        y: 156
+        width: 656
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ARROWBUTTONSFORTABS_DOWN
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 79
+        width: 656
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ARROWBUTTONSFORTABS_UP
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 656
+        height: 72
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
