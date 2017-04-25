@@ -20,38 +20,48 @@ namespace Assets.Scripts
         public void OnPointerEnter(PointerEventData eventData)
         {
             UIManager.Self.Tooltipobjectpanel.gameObject.SetActive(true);
+			PartPreview.Self.gameObject.SetActive(true);
 
             switch (this.gameObject.name)
             {
                 case "THRUSTER1":
                     ToolTip.Self.Objectdescription = "Rust Type\n Requirements:\n Steel Cost: 200\n Fuel Cost: 50\n Quality: 20";
-                    break;
+					PartPreview.Self.rustT.SetActive(true);
+					break;
                 case "THRUSTER2":
                     ToolTip.Self.Objectdescription = "Color Type\n Requirements:\n Steel Cost: 200 \n Fuel Cost: 50\n Quality: 50";
-                    break;
+					PartPreview.Self.colorT.SetActive(true);
+					break;
                 case "THRUSTER3":
                     ToolTip.Self.Objectdescription = "Flame Type\n Requirements:\n Steel Cost: 200 \n Fuel Cost: 50\n Quality: 80";
-                    break;
+					PartPreview.Self.flameT.SetActive(true);
+					break;
                 case "COCKPIT1":
                     ToolTip.Self.Objectdescription = "Rust Type\n Requirements:\n Steel Cost: 200 \n Fuel Cost: 0\n Quality: 20";
-                    break;
+					PartPreview.Self.rustCP.SetActive(true);
+					break;
                 case "COCKPIT2":
                     ToolTip.Self.Objectdescription = "Color Type\n Requirements:\n Steel Cost: 200 \n Fuel Cost: 0\n Quality: 50";
-                    break;
+					PartPreview.Self.colorCP.SetActive(true);
+					break;
                 case "COCKPIT3":
                     ToolTip.Self.Objectdescription = "Flame Type\n Requirements:\n Steel Cost: 200 \n Fuel Cost: 0\n Quality: 80";
-                    break;
+					PartPreview.Self.flameCP.SetActive(true);
+					break;
                 case "WING1":
                     ToolTip.Self.Objectdescription = "Rust Type\n Requirements:\n Steel Cost: 200 \n Fuel Cost: 0\n Quality: 20";
-                    break;
+					PartPreview.Self.rustW.SetActive(true);
+					break;
                 case "WING2":
                     ToolTip.Self.Objectdescription = "Color Type\n Requirements:\n Steel Cost: 200 \n Fuel Cost: 0\n Quality: 50";
-                    break;
+					PartPreview.Self.colorW.SetActive(true);
+					break;
                 case "WING3":
                     ToolTip.Self.Objectdescription = "Flame Type\n Requirements:\n Steel Cost: 200 \n Fuel Cost: 0\n Quality: 80";
-                    break;
+					PartPreview.Self.flameW.SetActive(true);
+					break;
                 default:
-                    break;
+					break;
             }
         }
 
@@ -63,8 +73,14 @@ namespace Assets.Scripts
         /// </param>
         public void OnPointerExit(PointerEventData eventData)
         {
-            ToolTip.Self.Objectdescription = " ";
+			foreach(GameObject t in PartPreview.Self.exampleParts)
+			{
+				t.transform.eulerAngles = new Vector3(0, 0, 35);
+				t.SetActive(false);
+			}
+			ToolTip.Self.Objectdescription = " ";
             UIManager.Self.Tooltipobjectpanel.gameObject.SetActive(false);
+			PartPreview.Self.gameObject.SetActive(false);
         }
     }
 }

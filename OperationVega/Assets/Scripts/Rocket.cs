@@ -227,8 +227,6 @@ namespace Assets.Scripts
 		private void Start()
 		{
 			this.allParts = new List<IRocketParts>();
-			User.SteelCount = 9000;
-			User.FuelCount = 9000;
 		}
 
 		/// <summary>

@@ -27,8 +27,6 @@ namespace Assets.Scripts
 
 		private List<GameObject> partList;
 
-		public Camera tempDisplay;
-
 		public static PartPreview Self
 		{
 			get
@@ -38,7 +36,7 @@ namespace Assets.Scripts
 			}
 		}
 
-		public List<GameObject> allParts
+		public List<GameObject> exampleParts
 		{
 			get
 			{
@@ -58,26 +56,35 @@ namespace Assets.Scripts
 
 			partList = new List<GameObject>() { rustCP, colorCP, flameCP, rustT, colorT, flameT, rustW, colorW, flameW };
 
-			rustCP.SetActive(false);
-			colorCP.SetActive(false);
-			flameCP.SetActive(false);
-			rustT.SetActive(false);
-			colorT.SetActive(false);
-			flameT.SetActive(false);
-			rustW.SetActive(false);
-			colorW.SetActive(false);
-			flameW.SetActive(false);
+			foreach (GameObject t in partList)
+			{
+				t.transform.eulerAngles = new Vector3(0, 0, 35);
+				t.SetActive(false);
+			}
 
-			this.horizPos = this.transform.GetComponent<RectTransform>().sizeDelta.x / 2 + 25;
-			this.vertPos = this.transform.GetComponent<RectTransform>().sizeDelta.y / 2;
+			this.horizPos = this.transform.GetComponent<RectTransform>().sizeDelta.x / 2 + 10;
+			this.vertPos = this.transform.GetComponent<RectTransform>().sizeDelta.y / 2 + 20;
 			this.gameObject.SetActive(false);
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
-			
-			tempDisplay.transform.position = new Vector3(Input.mousePosition.x - this.horizPos, Input.mousePosition.y + this.vertPos, Input.mousePosition.z);
+			this.transform.position = new Vector3(
+				Input.mousePosition.x - this.horizPos,
+				Input.mousePosition.y + this.vertPos,
+				Input.mousePosition.z);
+			foreach (GameObject t in partList)
+			{
+				if (t.activeInHierarchy)
+				{
+					t.transform.Rotate(
+						Vector3.right.x * 0,
+						Vector3.up.y * Time.deltaTime * 20,
+						Vector3.forward.z * Time.deltaTime,
+						Space.World);
+				}
+			}
 		}
 	}
 }
