@@ -87,6 +87,8 @@ namespace UI
         private RectTransform m_MainUI;
         [SerializeField]
         private RectTransform m_AreyousureUI;
+        [SerializeField]
+        private RectTransform m_InstructionsUI;
   
         public RectTransform Tooltipobjectpanel;
 
@@ -277,6 +279,7 @@ namespace UI
             EventManager.Subscribe("NewGame", this.NewGame);
             EventManager.Subscribe("Options Menu", this.OnOptions);
             EventManager.Subscribe("Instructions", this.OnInstructions);
+            EventManager.Subscribe("CloseInstructions", this.OnInstructionsClose);
             EventManager.Subscribe("QuitGame", this.OnQuitGame);
             EventManager.Subscribe("Close Options", this.CloseOptions);
             EventManager.Subscribe("Settings", this.OnSettings);
@@ -325,6 +328,7 @@ namespace UI
             EventManager.UnSubscribe("NewGame", this.NewGame);
             EventManager.UnSubscribe("Options Menu", this.OnOptions);
             EventManager.UnSubscribe("Instructions", this.OnInstructions);
+            EventManager.UnSubscribe("CloseInstructions", this.OnInstructionsClose);
             EventManager.UnSubscribe("QuitGame", this.OnQuitGame);
             EventManager.UnSubscribe("Close Options", this.CloseOptions);
             EventManager.UnSubscribe("Settings", this.OnSettings);
@@ -780,8 +784,17 @@ namespace UI
 
         private void OnInstructions()
         {
+            m_InstructionsUI.gameObject.SetActive(true);
             //Function will bring up the instructions.
             Debug.Log("Instructions");
+        }
+        public void OnInstructionsCloseClick()
+        {
+            EventManager.Publish("CloseInstructions");
+        }
+        private void OnInstructionsClose()
+        {
+            m_InstructionsUI.gameObject.SetActive(false);
         }
         public void OnSettingsClick()
         {
@@ -849,6 +862,7 @@ namespace UI
             m_CraftingTAB.gameObject.SetActive(false);
             m_Workshop.gameObject.SetActive(false);
             m_ObjectiveUI.gameObject.SetActive(false);
+            m_InstructionsUI.gameObject.SetActive(false);
             
             Debug.Log("Customize Menu");
         }
