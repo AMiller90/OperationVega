@@ -833,8 +833,6 @@ namespace UI
             AudioManager.Self.Volume = m_OptionsUI.GetComponentsInChildren<Slider>()[0].value / 10;
             AudioManager.ChangedVolume = AudioManager.Self.Volume;
             m_OptionsUI.GetComponentsInChildren<Text>()[1].text = "Audio Volume: " + AudioManager.ChangedVolume * 10;
-
-            m_OptionsUI.GetComponentsInChildren<Text>()[2].text = "Audio Volume";
             Debug.Log("Volume Slider");
         }
 
