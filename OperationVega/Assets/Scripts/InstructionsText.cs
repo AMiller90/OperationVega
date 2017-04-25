@@ -11,7 +11,7 @@ namespace Assets.Scripts
     /// The instructions text class.
     /// Responsible for storing and displaying the information for the instructions panel.
     /// </summary>
-    public class InstructionsText : MonoBehaviour, IPointerClickHandler
+    public class InstructionsText : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         /// <summary>
         /// The display text reference.
@@ -32,8 +32,29 @@ namespace Assets.Scripts
             {
                 this.displayText.text = InstructionsInformation.Self.InformationDictionary[this.GetComponent<Text>().text];
             }
+        }
 
-            //6CA7BFFF
+        /// <summary>
+        /// The on pointer enter function.
+        /// </summary>
+        /// <param name="eventData">
+        /// The event data.
+        /// </param>
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            Color OpBlue = new Color(108f/255f, 167f/255f, 191f/255f, 1);
+            this.GetComponent<Text>().color = OpBlue;
+        }
+
+        /// <summary>
+        /// The on pointer exit function.
+        /// </summary>
+        /// <param name="eventData">
+        /// The event data.
+        /// </param>
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            this.GetComponent<Text>().color = Color.white;
         }
     }
 
