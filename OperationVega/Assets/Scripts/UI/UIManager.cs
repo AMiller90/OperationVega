@@ -439,6 +439,7 @@ namespace UI
 
         void ScaleFactor()
         {
+            return;
             this.Scalefactor = 0;
             this.objectivescale = 130;
 

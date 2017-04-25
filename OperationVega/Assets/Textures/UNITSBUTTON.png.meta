@@ -5,6 +5,7 @@ licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
     21300000: UNITSBUTTON_0
+    21300002: UNITSBUTTON_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -37,7 +38,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 9
   spritePivot: {x: 0.44559717, y: 0.24583896}
   spriteBorder: {x: 716, y: 221, z: 924, w: 765}
@@ -87,7 +88,20 @@ TextureImporter:
         width: 279
         height: 95
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UNITSBUTTON_1
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 251
+        width: 163
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
