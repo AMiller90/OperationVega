@@ -8,10 +8,12 @@ namespace Assets.Scripts
 
 	public class PartPreview : MonoBehaviour
 	{
+		private bool positionSet = false;
+
 		public static bool activePreview;
 		private static PartPreview instance;
-		private float horizPos;
-		private float vertPos;
+		public float horizPos;
+		public float vertPos;
 		
 		public GameObject rustCP;
 		public GameObject colorCP;
@@ -70,12 +72,13 @@ namespace Assets.Scripts
 		// Update is called once per frame
 		void Update()
 		{
-			this.transform.position = new Vector3(
-				Input.mousePosition.x - this.horizPos,
-				Input.mousePosition.y + this.vertPos,
-				Input.mousePosition.z);
+			//this.transform.position = new Vector3(
+			//	Input.mousePosition.x - this.horizPos,
+			//	Input.mousePosition.y + this.vertPos,
+			//	Input.mousePosition.z);
 			foreach (GameObject t in partList)
 			{
+				
 				if (t.activeInHierarchy)
 				{
 					t.transform.Rotate(
@@ -85,6 +88,23 @@ namespace Assets.Scripts
 						Space.World);
 				}
 			}
+		}
+
+		private void OnEnable()
+		{
+			if (!positionSet)
+			{
+				this.transform.position = new Vector3(
+					Input.mousePosition.x - this.horizPos,
+					Input.mousePosition.y + this.vertPos,
+					Input.mousePosition.z);
+				positionSet = true;
+			}
+		}
+
+		private void OnDisable()
+		{
+			positionSet = false;
 		}
 	}
 }
