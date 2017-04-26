@@ -7,7 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/DonteMainMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Andrew.unity
   - enabled: 1
+    path: Assets/Scenes/1.main.unity
+  - enabled: 0
     path: Assets/Scenes/EugeneCredits.unity

@@ -12,19 +12,19 @@ public class ChangeOutlineBehaviour : MonoBehaviour {
     void Start()
     {
         material = GetComponent<MeshRenderer>().materials[0];
-        defaultColor = material.color;
+        defaultColor = material.GetColor(colorUniform);
     }
     static class Uniforms { internal static readonly int colorUniform = Shader.PropertyToID("_OutlineColor"); }
 
     public void ChangeOutlineColor(bool on)
     {
         
-        material.SetColor("_OutlineColor", Color.cyan);
+        material.SetColor("_OutlineColor", Color.green);
         print("color");
 
        if(on == false)
         {
-            material.SetColor("_OutlineColor", defaultColor);
+            material.SetColor("_OutlineColor", Color.black);
         }
         
     }
