@@ -59,7 +59,7 @@ public class UIActions : MonoBehaviour {
     private void OnActivateAbility()
     {
         //Function will be use to rally upon click.
-        Debug.Log("Activate Ability ");
+     
     }
     public void OnHarvestClick()
     {
@@ -69,7 +69,7 @@ public class UIActions : MonoBehaviour {
     {
         //Function will be use to harvest upon click.
         UnitController.Self.Harvest();
-        Debug.Log("Begin Harvesting");
+       
     }
     public void OnRecallClick()
     {
@@ -80,7 +80,7 @@ public class UIActions : MonoBehaviour {
     {
         UnitController.Self.CallHome();
         //Function will be use to recall upon click.
-        Debug.Log("Recall to barracks.");
+      
     }
     public void OnCancelActionClick()
     {
@@ -90,7 +90,7 @@ public class UIActions : MonoBehaviour {
     {
         UnitController.Self.CancelAction();
         //Function will cancel previous action upon click.
-        Debug.Log("Cancel Previous Action");
+       
     }
 
     public void OnSAExtractClick()
@@ -101,7 +101,7 @@ public class UIActions : MonoBehaviour {
     {
         //Calls the SelectAll Extractors function within the UnitController.
         UnitController.Self.SelectAllExtractors();
-        Debug.Log("Select All Extract");
+        
     }
 
     public void OnSAMinerClick()
@@ -112,7 +112,7 @@ public class UIActions : MonoBehaviour {
     {
         //Calls the SelectAll Miners function within the UnitController.
         UnitController.Self.SelectAllMiners();
-        Debug.Log("Select All Miner");
+        
     }
 
     public void OnSAUnitClick()
@@ -123,7 +123,7 @@ public class UIActions : MonoBehaviour {
     {
         //Calls the Select All Units function within the UnitController.
         UnitController.Self.SelectAllUnits();
-        Debug.Log("Select All Units");
+    
     }
     public void OnSAHarvestClick()
     {
@@ -133,7 +133,7 @@ public class UIActions : MonoBehaviour {
     {
         //Calls the Select All Harvesters function within the UnitController.
         UnitController.Self.SelectAllHarvesters();
-        Debug.Log("Select All Harvesters");
+       
     }
 
 
@@ -161,7 +161,7 @@ public class UIActions : MonoBehaviour {
             m_ActionsTAB.offsetMax = new Vector2(m_ActionsTAB.offsetMax.x, Scalefactor);
             m_ActionsTAB.offsetMin = new Vector2(m_ActionsTAB.offsetMin.x, -115);
         }
-        Debug.Log("Move Actions Tab down");
+       
     } 
 
     

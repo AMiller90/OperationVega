@@ -242,7 +242,7 @@ public class UIWorkshop : MonoBehaviour {
     {
         m_WorkshopUI.gameObject.SetActive(true);
         //This function will bring up the workshop within the game.
-        Debug.Log("Workshop");
+     
     }
 
     public void CloseWorkShopClick()
@@ -253,7 +253,7 @@ public class UIWorkshop : MonoBehaviour {
     {
         //This function will close work shop menu
         m_WorkshopUI.gameObject.SetActive(false);
-        Debug.Log("Close Workshop Menu");
+       
 
     }
 }

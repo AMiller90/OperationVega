@@ -121,7 +121,7 @@ public class UICrafting : MonoBehaviour
 
             input1b = true;
         }
-        Debug.Log("Minerals");
+        
     }
 
     public void Food()
@@ -145,7 +145,7 @@ public class UICrafting : MonoBehaviour
 
             input2b = false;
         }
-        Debug.Log("Food");
+        
     }
 
     public void CookedFood()
@@ -163,7 +163,7 @@ public class UICrafting : MonoBehaviour
             mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             this.foodinstance = Instantiate(cookedfoodPrefab, mousePosition, Quaternion.identity);
-            Debug.Log("Cooked Food");
+           
 
             User.CookedFoodCount--;
         }
@@ -190,7 +190,7 @@ public class UICrafting : MonoBehaviour
 
             input2b = false;
         }
-        Debug.Log("Gas");
+      
     }
 
     public void Fuel()
@@ -215,7 +215,7 @@ public class UICrafting : MonoBehaviour
             input2b = false;
         }
         //Second Slot if first one is selected.
-        Debug.Log("Fuel");
+    
     }
     public void Steel()
     {
@@ -224,7 +224,7 @@ public class UICrafting : MonoBehaviour
 
     private void OnSteel()
     {
-        Debug.Log("Steel");
+      
     }
 
 
@@ -258,7 +258,7 @@ public class UICrafting : MonoBehaviour
         }
 
 
-        Debug.Log("Changes Position of the Crafting Tab.");
+    
     }
 
     public void OnCraftClick()
@@ -460,6 +460,6 @@ public class UICrafting : MonoBehaviour
 
 
         //This function will clear items in the craft.
-        Debug.Log("Clear");
+       
     }
 }
