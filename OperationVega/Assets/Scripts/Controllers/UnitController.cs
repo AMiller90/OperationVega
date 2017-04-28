@@ -22,6 +22,7 @@ namespace Assets.Scripts.Controllers
     /// </summary>
     public class UnitController : MonoBehaviour
     {
+        public LayerMask allbutui;
         /// <summary>
         /// The purchase harvester reference.
         /// Determines if the purchase harvester button was clicked.
@@ -678,13 +679,14 @@ namespace Assets.Scripts.Controllers
         private void CommandUnits()
         {
             // If the right mouse button is pressed and its not on a UI element
-            if (Input.GetKeyDown(KeyCode.Mouse1) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetKeyDown(KeyCode.Mouse1) )/*&& !EventSystem.current.IsPointerOverGameObject()*/
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit = new RaycastHit();
+                Debug.Log(hit);
 
-                if (Physics.Raycast(ray.origin, ray.direction, out hit))
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000f, allbutui))
                 {
                     this.clickdestination = new Vector3(hit.point.x, 0.5f, hit.point.z);
 

@@ -51,7 +51,7 @@ namespace Assets.Scripts.Controllers
             this.ZoomCamera();
             this.PanCamera();
 
-            MoveSpeed = (uint)Mathf.Clamp(MoveSpeed, 3, 5);
+            MoveSpeed = (uint)Mathf.Clamp(MoveSpeed, 10, 15);
             this.rotateSpeed = (uint)Mathf.Clamp(this.rotateSpeed, 3, 5);
         }
 
@@ -71,7 +71,7 @@ namespace Assets.Scripts.Controllers
         private void PanCamera()
         {
             // WASD Keys
-            if (Input.GetKey(KeyCode.W))
+            if(Input.GetKey(KeyCode.W))
             {
                 // Due to the rotation this needs to move forward and right to move up.
                 this.transform.position += this.transform.forward * MoveSpeed * Time.deltaTime;
@@ -83,7 +83,7 @@ namespace Assets.Scripts.Controllers
                 this.transform.position.y,
                 Mathf.Clamp(this.transform.position.z, -170, 220));
             }
-            if (Input.GetKey(KeyCode.S))
+            if(Input.GetKey(KeyCode.S))
             {
                 // Due to the rotation this needs to move back and left to move down.
                 this.transform.position += -this.transform.forward * MoveSpeed * Time.deltaTime;
@@ -95,7 +95,7 @@ namespace Assets.Scripts.Controllers
                 this.transform.position.y,
                 Mathf.Clamp(this.transform.position.z, -170, 220));
             }
-            if (Input.GetKey(KeyCode.A))
+            if(Input.GetKey(KeyCode.A))
             {
                 Camera.main.transform.position += -Camera.main.transform.right * MoveSpeed * Time.deltaTime;
 
@@ -105,7 +105,7 @@ namespace Assets.Scripts.Controllers
                 Camera.main.transform.position.y,
                 Mathf.Clamp(Camera.main.transform.position.z, -170, 220));
             }
-            if (Input.GetKey(KeyCode.D))
+            if(Input.GetKey(KeyCode.D))
             {
                 Camera.main.transform.position += Camera.main.transform.right * MoveSpeed * Time.deltaTime;
 
@@ -117,7 +117,7 @@ namespace Assets.Scripts.Controllers
             }
 
             // Arrow Keys
-            if (Input.GetKey(KeyCode.UpArrow))
+            if(Input.GetKey(KeyCode.UpArrow))
             {
                 // Due to the rotation this needs to move forward and right to move up.
                 this.transform.position += this.transform.forward * MoveSpeed * Time.deltaTime;
@@ -129,7 +129,7 @@ namespace Assets.Scripts.Controllers
                 this.transform.position.y,
                 Mathf.Clamp(this.transform.position.z, -170, 220));
             }
-            if (Input.GetKey(KeyCode.DownArrow))
+            if(Input.GetKey(KeyCode.DownArrow))
             {
                 // Due to the rotation this needs to move back and left to move down.
                 this.transform.position += -this.transform.forward * MoveSpeed * Time.deltaTime;
@@ -141,7 +141,7 @@ namespace Assets.Scripts.Controllers
                 this.transform.position.y,
                 Mathf.Clamp(this.transform.position.z, -170, 220));
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if(Input.GetKey(KeyCode.LeftArrow))
             {
                 Camera.main.transform.position += -Camera.main.transform.right * MoveSpeed * Time.deltaTime;
 
@@ -151,7 +151,7 @@ namespace Assets.Scripts.Controllers
                 Camera.main.transform.position.y,
                 Mathf.Clamp(Camera.main.transform.position.z, -170, 220));
             }
-            if (Input.GetKey(KeyCode.RightArrow))
+            if(Input.GetKey(KeyCode.RightArrow))
             {
                 Camera.main.transform.position += Camera.main.transform.right * MoveSpeed * Time.deltaTime;
 
@@ -163,34 +163,34 @@ namespace Assets.Scripts.Controllers
             }
 
             // Reset the camera 
-            if (Input.GetKeyDown(KeyCode.T))
+            if(Input.GetKeyDown(KeyCode.T))
             {
                 this.transform.eulerAngles = Vector3.zero;
                 this.transform.position = Vector3.zero;
             }
 
             // Toggle on or off panning of camera with mouse
-            if (Input.GetKeyDown(KeyCode.Y))
+            if(Input.GetKeyDown(KeyCode.Y))
             {
                 this.panwithmouse = !this.panwithmouse;
             }
 
             // If can pan with the mouse
-            if (this.panwithmouse)
+            if(this.panwithmouse)
             {
-                if (Input.mousePosition.x >= Screen.width - this.borderoffset && Input.mousePosition.x < Screen.width)
+                if(Input.mousePosition.x >= Screen.width - this.borderoffset && Input.mousePosition.x < Screen.width)
                 {
                     this.transform.position += this.transform.right * MoveSpeed * Time.deltaTime;
                 }
-                if (Input.mousePosition.x <= this.borderoffset && Input.mousePosition.x > 0)
+                if(Input.mousePosition.x <= this.borderoffset && Input.mousePosition.x > 0)
                 {
                     this.transform.position += -this.transform.right * MoveSpeed * Time.deltaTime;
                 }
-                if (Input.mousePosition.y >= Screen.height - this.borderoffset && Input.mousePosition.y < Screen.height)
+                if(Input.mousePosition.y >= Screen.height - this.borderoffset && Input.mousePosition.y < Screen.height)
                 {
                     this.transform.position += Vector3.up * MoveSpeed * Time.deltaTime;
                 }
-                if (Input.mousePosition.y <= this.borderoffset && Input.mousePosition.y > 0)
+                if(Input.mousePosition.y <= this.borderoffset && Input.mousePosition.y > 0)
                 {
                     this.transform.position += Vector3.down * MoveSpeed * Time.deltaTime;
                 }
@@ -203,16 +203,21 @@ namespace Assets.Scripts.Controllers
         /// </summary>
         private void ZoomCamera()
         {
-            if (Input.mouseScrollDelta.y < 0)
-            {
-                Camera.main.orthographicSize += 0.25f;
+    
+                if (Input.mouseScrollDelta.y < 0)
+                {
+                    Camera.main.transform.localPosition -= new Vector3(0, 0, 0.25f) * 5f;
+                    var campos = Camera.main.transform.localPosition;
+                    Camera.main.transform.localPosition
+                        = new Vector3(campos.x, campos.y, Mathf.Clamp(campos.z, -85.0f ,- 15.0f));
             }
-            else if (Input.mouseScrollDelta.y > 0)
-            {
-                Camera.main.orthographicSize -= 0.25f;
+                else if (Input.mouseScrollDelta.y > 0)
+                {
+                    Camera.main.transform.localPosition += new Vector3(0, 0, 0.25f) * 5f;
+                    var campos = Camera.main.transform.localPosition;
+                    Camera.main.transform.localPosition
+                        = new Vector3(campos.x, campos.y, Mathf.Clamp(campos.z, -85.0f ,-15.0f));
             }
-
-            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 7, 10);
         }
 
         /// <summary>
@@ -221,9 +226,9 @@ namespace Assets.Scripts.Controllers
         /// </summary>
         private void RotateCamera()
         {
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftAlt))
+            if(Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftAlt))
             {
-                if (Input.mousePosition.x != this.mousePosX)
+                if(Input.mousePosition.x != this.mousePosX)
                 {
                     float camroty = (Input.mousePosition.x - this.mousePosX) * this.rotateSpeed * Time.deltaTime;
                     this.transform.Rotate(0.0f, camroty, 0.0f);
@@ -254,36 +259,36 @@ namespace Assets.Scripts.Controllers
             bool inverse = false;
             float tmin = min;
             float tangle = angle;
-            if (min > 180)
+            if(min > 180)
             {
                 inverse = !inverse;
                 tmin -= 180;
             }
-            if (angle > 180)
+            if(angle > 180)
             {
                 inverse = !inverse;
                 tangle -= 180;
             }
             bool result = !inverse ? tangle > tmin : tangle < tmin;
-            if (!result)
+            if(!result)
                 angle = min;
 
             inverse = false;
             tangle = angle;
             float tmax = max;
-            if (angle > 180)
+            if(angle > 180)
             {
                 inverse = !inverse;
                 tangle -= 180;
             }
-            if (max > 180)
+            if(max > 180)
             {
                 inverse = !inverse;
                 tmax -= 180;
             }
 
             result = !inverse ? tangle < tmax : tangle > tmax;
-            if (!result)
+            if(!result)
                 angle = max;
 
             return angle;

@@ -6,25 +6,29 @@ using UnityEngine.UI;
 public class ChangeOutlineBehaviour : MonoBehaviour {
 
 
-    int colorUniform;
+    
     Material material;
     Color defaultColor;
+    public Color targetColor = Color.green;
+
+    static class Uniforms { internal static readonly int colorUniform = Shader.PropertyToID("_OutlineColor"); }
+
     void Start()
     {
-        material = GetComponent<MeshRenderer>().materials[0];
-        defaultColor = material.GetColor(colorUniform);
+        material = GetComponentInChildren<Renderer>().materials[0];
+        defaultColor = material.GetColor(Uniforms.colorUniform);
     }
-    static class Uniforms { internal static readonly int colorUniform = Shader.PropertyToID("_OutlineColor"); }
+    
 
     public void ChangeOutlineColor(bool on)
     {
         
-        material.SetColor("_OutlineColor", Color.green);
+        material.SetColor(Uniforms.colorUniform, targetColor);
         print("color");
 
        if(on == false)
         {
-            material.SetColor("_OutlineColor", Color.black);
+            material.SetColor(Uniforms.colorUniform, Color.black);
         }
         
     }
