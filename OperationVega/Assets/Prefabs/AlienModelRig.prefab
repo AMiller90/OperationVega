@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4644894543447670}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_arm_ShoulderSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4963995160867484}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_tail_01_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4143768377682508}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_claw_01_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4762944742218340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_arm_ShoulderSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4401335789264788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_head_TopSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4057729423589834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_ROOTSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4838920925573770}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_leg_ToeSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4063006244335182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_claw_03_03SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4615450232178946}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_whiskers_01_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4408822175192452}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_claw_02_03SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4843314455992830}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_arm_ElbowSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4957322390042108}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_claw_02_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4045596966441334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_neck_TopSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4263998520088712}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_ears_01_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4131889693849594}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_leg_Knee1SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4574741770444532}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_tail_01_04SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4950485093531640}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_leg_ToeSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4684311730016034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_whiskers_01_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4853642610812418}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_whiskers_02_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4300338724290518}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_whiskers_02_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4320021408816656}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_claw_02_03SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4675091151065886}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_tail_01_03SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4625350275616610}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_spine_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4411111967782832}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_claw_03_03SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4132888787751402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_leg_AnkleSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4373434690520134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_claw_03_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4428806099462478}
   - component: {fileID: 137456535614135124}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4387613304596892}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_claw_01_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4411766433963456}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_leg_Knee2SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4164666322332762}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_claw_02_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4862910621212526}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_tail_01_05SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4266978476692060}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_claw_01_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4973258736015890}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_claw_02_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4072964451603772}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_tail_01_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4398948623397250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_leg_AnkleSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4234187162201384}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_claw_03_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4605754584935740}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_whiskers_02_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +575,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4398705954060560}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_ears_01_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4921546903956218}
   - component: {fileID: 137146746248753852}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Alien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4083256270747838}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_claw_01_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4656781665252014}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_ears_01_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4587920440209116}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_ears_01_03SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4112689960708004}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_arm_ClavicleSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4446869565550270}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_spine_TopSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4458634571735800}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_leg_HipSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +696,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4113425574882680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_neck_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4706489794613956}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_claw_01_03SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4159102884736754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_whiskers_02_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4257797199751776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_whiskers_01_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 114340326655231066}
   - component: {fileID: 114980957472869986}
   - component: {fileID: 114465134433434754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AlienModelRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -777,7 +777,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4416915708940666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_leg_HipSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,7 +793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4792951993439556}
   - component: {fileID: 137772572210688674}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: polySurface2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -808,7 +808,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4042083548339142}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_leg_Knee2SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -823,7 +823,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4117698211548792}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_arm_ClavicleSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -838,7 +838,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4449576279425090}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_claw_03_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,7 +853,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4908295637092168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_arm_ElbowSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -868,7 +868,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4916286927701202}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_arm_WristSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +883,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4553497596134076}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_leg_BallSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -898,7 +898,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4017621609569190}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_spine_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +913,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4084931156042220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_eye_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +928,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4882035242613370}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_claw_01_03SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -943,7 +943,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4848258694069152}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_ears_01_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4931163182758882}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_arm_WristSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -973,7 +973,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4967239851204032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_eye_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -988,7 +988,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4296296950655426}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_claw_02_01SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1003,7 +1003,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4070463924010350}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_ears_01_03SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,7 +1018,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4154223230696460}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_leg_BallSHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1035,7 +1035,7 @@ GameObject:
   - component: {fileID: 4913921697384060}
   - component: {fileID: 199147246354950432}
   - component: {fileID: 198044076094080278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ParticleHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1050,7 +1050,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4836321346522504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_leg_Knee1SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1065,7 +1065,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4099056207628808}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_r_claw_03_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1080,7 +1080,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4616292399007880}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: alien_rig_l_whiskers_01_02SHJnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
