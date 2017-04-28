@@ -721,7 +721,7 @@ namespace UI
                 m_UnitTAB.offsetMin = new Vector2(m_UnitTAB.offsetMin.x, -115);
             }
 
-            Debug.Log("Move Unit Tab down");
+           
         }
              
         public void OnMineClick()
@@ -731,7 +731,7 @@ namespace UI
         private void OnMine()
         {
             //This function will prompt the mining function
-            Debug.Log("Begin Mining");
+          
         }
         public void OnExtractClick()
         {
@@ -739,7 +739,7 @@ namespace UI
         }
         private void OnExtract()
         {
-            Debug.Log("Begin Extracting");
+    
         }
         #region -- Main Menu Functions --
         public void OnOptionsClick()
@@ -751,7 +751,7 @@ namespace UI
             m_OptionsUI.GetComponentsInChildren<Slider>()[0].value = AudioManager.Self.Volume * 10;
             m_OptionsUI.gameObject.SetActive(true);
             m_SettingsUI.gameObject.SetActive(false);
-            Debug.Log("Options Menu");
+
         }
         public void CloseOptionsClick()
         {
@@ -763,7 +763,7 @@ namespace UI
             //Sets the options panel to false when the back button is clicked.
             m_OptionsUI.gameObject.SetActive(false);
             m_SettingsUI.gameObject.SetActive(true);
-            Debug.Log("Close Options");
+     
         }
 
         public void NewGameClick()
@@ -775,7 +775,7 @@ namespace UI
             SceneManager.LoadScene(1);
             GameManager.Instance.SetUpNewGame();
             //Function will begin game from main menu
-            Debug.Log("New Game");
+
         }
 
         public void OnInstructionsClick()
@@ -787,7 +787,7 @@ namespace UI
         {
             m_InstructionsUI.gameObject.SetActive(true);
             //Function will bring up the instructions.
-            Debug.Log("Instructions");
+ 
         }
         public void OnInstructionsCloseClick()
         {
@@ -804,7 +804,7 @@ namespace UI
         private void OnSettings()
         {
             m_SettingsUI.gameObject.SetActive(true);
-            Debug.Log("Settings Menu");
+   
         }
         public void OnSettingsCloseClick()
         {
@@ -813,7 +813,7 @@ namespace UI
         private void OnSettingsClose()
         {
             m_SettingsUI.gameObject.SetActive(false);
-            Debug.Log("Settings Close");
+        
         }
         public void OnQuitToMenuClick()
         {
@@ -822,7 +822,7 @@ namespace UI
         private void OnQuitToMenu()
         {
             SceneManager.LoadScene(0);
-            Debug.Log("Quit to Menu");
+         
         }
         
         public void OnVolumeSliderClick()
@@ -834,7 +834,7 @@ namespace UI
             AudioManager.Self.Volume = m_OptionsUI.GetComponentsInChildren<Slider>()[0].value / 10;
             AudioManager.ChangedVolume = AudioManager.Self.Volume;
             m_OptionsUI.GetComponentsInChildren<Text>()[1].text = "Audio Volume: " + AudioManager.ChangedVolume * 10;
-            Debug.Log("Volume Slider");
+         
         }
 
         public void OnCameraSpeedSliderClick()
@@ -845,7 +845,7 @@ namespace UI
         {
             CameraController.MoveSpeed = (uint)m_OptionsUI.GetComponentsInChildren<Slider>()[1].value;
             m_OptionsUI.GetComponentsInChildren<Text>()[2].text = "Camera Speed: " + CameraController.MoveSpeed;
-            Debug.Log("CameraSpeed Slider");
+        
         }
         public void OnCustomizeClick()
         {
@@ -863,7 +863,7 @@ namespace UI
             m_ObjectiveUI.gameObject.SetActive(false);
             m_InstructionsUI.gameObject.SetActive(false);
             
-            Debug.Log("Customize Menu");
+            
         }
         public void OnCustomRestoreClick()
         {
@@ -889,7 +889,7 @@ namespace UI
             m_CraftingTAB.gameObject.SetActive(true);
             m_Workshop.gameObject.SetActive(true);
             m_ObjectiveUI.gameObject.SetActive(true);
-            Debug.Log("Customize closed");
+       
         }
         public void OnMChoiceClick()
         {
@@ -903,7 +903,7 @@ namespace UI
             //Spawns Miner Upon clicking Yes/No
             m_AreyousureUI.gameObject.SetActive(true);
             UnitController.PurchaseMiner = true;
-            Debug.Log("Miners Choice");
+        
         }
         public void OnHChoiceClick()
         {
@@ -917,7 +917,7 @@ namespace UI
             //Spawns Harvester Upon clicking Yes/No
             m_AreyousureUI.gameObject.SetActive(true);
             UnitController.PurchaseHarvester = true;
-            Debug.Log("Harvester Choice");
+          
         }
         public void OnEChoiceClick()
         {
@@ -931,7 +931,7 @@ namespace UI
             //Spawns Extracter Upon clicking Yes/No
             m_AreyousureUI.gameObject.SetActive(true);
             UnitController.PurchaseExtractor = true;
-            Debug.Log("Extractor Choice");
+       
         }
         public void OnYesClick()
         {
@@ -960,7 +960,7 @@ namespace UI
         {
             Application.Quit();
             //Function will quit game upon click.
-            Debug.Log("Quit Game");
+           
         }
         #endregion
         #endregion
@@ -991,7 +991,7 @@ namespace UI
             theUIStats[2].text = "MaxHealth: " + unitstats.Maxhealth;
             theUIStats[10].text = "Upgrade Points Available: " + User.UpgradePoints;
 
-            Debug.Log("Increases Max Health");
+        
         }
         public void OnStrengthClick()
         {
@@ -1016,7 +1016,7 @@ namespace UI
             theUIStats[9].text = "ResourceCount: " + unitstats.Resourcecount;
             theUIStats[3].text = "Strength: " + unitstats.Strength;
             theUIStats[10].text = "Upgrade Points Available: " + User.UpgradePoints;
-            Debug.Log("Increases Strength");
+            
   
         }
         public void OnDefenseClick()
@@ -1043,7 +1043,7 @@ namespace UI
             theUIStats[9].text = "ResourceCount: " + unitstats.Resourcecount;
             theUIStats[4].text = "Defense: " + unitstats.Defense;
             theUIStats[10].text = "Upgrade Points Available: " + User.UpgradePoints;
-            Debug.Log("Upgrade Defense");
+            
         }
         public void OnSpeedClick()
         {
@@ -1068,7 +1068,7 @@ namespace UI
             theUIStats[9].text = "ResourceCount: " + unitstats.Resourcecount;
             theUIStats[5].text = "Speed: " + unitstats.Speed;
             theUIStats[10].text = "Upgrade Points Available: " + User.UpgradePoints;
-            Debug.Log("Upgrade Speed");
+           
         }
         public void OnAttackSpeedClick()
         {
@@ -1092,7 +1092,7 @@ namespace UI
             theUIStats[9].text = "ResourceCount: " + unitstats.Resourcecount;
             theUIStats[6].text = "AttackSpeed: " + unitstats.Attackspeed;
             theUIStats[10].text = "Upgrade Points Available: " + User.UpgradePoints;
-            Debug.Log("Upgrade Attack Speed");
+            
         }
         
         public void OnSkillCoolDownClick()
@@ -1116,7 +1116,7 @@ namespace UI
             theUIStats[9].text = "ResourceCount: " + unitstats.Resourcecount;
             theUIStats[7].text = "SkillCooldown: " + unitstats.MaxSkillCooldown;
             theUIStats[10].text = "Upgrade Points Available: " + User.UpgradePoints;
-            Debug.Log("Upgrade SkillCooldown");
+         
         }
 
         public void OnAttackRangeClick()
@@ -1140,7 +1140,7 @@ namespace UI
             theUIStats[9].text = "ResourceCount: " + unitstats.Resourcecount;
             theUIStats[8].text = "AttackRange: " + unitstats.Attackrange;
             theUIStats[10].text = "Upgrade Points Available: " + User.UpgradePoints;
-            Debug.Log("Upgrade Defense");
+            
         }
 
         public void OnUpgradeCloseClick()
