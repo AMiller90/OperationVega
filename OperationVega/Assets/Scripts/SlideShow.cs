@@ -5,7 +5,7 @@ namespace Assets.Scripts
     using System.Collections.Generic;
 
     using UnityEngine;
-    using UnityEngine.Networking;
+    using UnityEngine.SceneManagement;
     using UnityEngine.UI;
 
     /// <summary>
@@ -33,6 +33,24 @@ namespace Assets.Scripts
         /// Reference to the image to display.
         /// </summary>
         private int listindex;
+
+        /// <summary>
+        /// The quit to main menu function.
+        /// This brings the user back to the main menu.
+        /// </summary>
+        public void QuitToMainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        /// <summary>
+        /// The quit function.
+        /// This quits the application.
+        /// </summary>
+        public void Quit()
+        {
+            Application.Quit();
+        }
 
         /// <summary>
         /// The start function.
@@ -111,5 +129,6 @@ namespace Assets.Scripts
             
             yield return this.FadeOut();
         }
+
     }
 }
