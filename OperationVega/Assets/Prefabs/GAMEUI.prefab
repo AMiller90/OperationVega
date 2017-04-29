@@ -11742,7 +11742,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 0
 --- !u!114 &114473782316431116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13880,10 +13880,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 224468011354675228}
   m_HandleRect: {fileID: 224547643811432774}
   m_Direction: 0
-  m_MinValue: 3
-  m_MaxValue: 5
+  m_MinValue: 10
+  m_MaxValue: 15
   m_WholeNumbers: 0
-  m_Value: 3
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -14698,6 +14698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c586ae74a85b73b44850dd545bfc0d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizPos: 0
+  vertPos: 0
   rustCP: {fileID: 0}
   colorCP: {fileID: 0}
   flameCP: {fileID: 0}

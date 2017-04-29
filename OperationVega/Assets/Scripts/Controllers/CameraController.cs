@@ -12,7 +12,7 @@ namespace Assets.Scripts.Controllers
         /// <summary>
         /// The speed at which the camera moves.
         /// </summary>
-        public static uint MoveSpeed = 3;
+        public static uint MoveSpeed = 10;
 
         /// <summary>
         /// The pan with mouse reference.

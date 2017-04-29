@@ -684,7 +684,6 @@ namespace Assets.Scripts.Controllers
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit = new RaycastHit();
-                Debug.Log(hit);
 
                 if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000f, allbutui))
                 {
