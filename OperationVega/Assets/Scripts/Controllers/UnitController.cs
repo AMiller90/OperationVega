@@ -923,7 +923,7 @@ namespace Assets.Scripts.Controllers
             // If the object hit is a unit and we have an instance of the cooked food to use
             if (hit.transform.gameObject.GetComponent(typeof(IUnit)) && UIManager.Self.foodinstance != null)
             {
-                GameObject theorb = hit.transform.GetChild(2).GetChild(2).GetChild(0).gameObject;
+                GameObject theorb = hit.transform.GetChild(1).GetChild(2).GetChild(0).gameObject;
                 Stats stats = hit.transform.gameObject.GetComponent<Stats>();
 
                 // If the unit can be healed

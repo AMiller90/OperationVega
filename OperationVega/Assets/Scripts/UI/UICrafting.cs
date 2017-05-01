@@ -7,6 +7,7 @@ using Assets.Scripts;
 using Assets.Scripts.Controllers;
 using Assets.Scripts.Interfaces;
 
+using UI;
 
 public class UICrafting : MonoBehaviour
 {
@@ -162,7 +163,7 @@ public class UICrafting : MonoBehaviour
             Vector3 mousePosition;
             mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            this.foodinstance = Instantiate(cookedfoodPrefab, mousePosition, Quaternion.identity);
+            UIManager.Self.foodinstance = Instantiate(cookedfoodPrefab, mousePosition, Quaternion.identity);
            
 
             User.CookedFoodCount--;
