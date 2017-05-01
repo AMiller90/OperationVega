@@ -24,7 +24,6 @@ public class ChangeOutlineBehaviour : MonoBehaviour {
     {
         
         material.SetColor(Uniforms.colorUniform, targetColor);
-        print("color");
 
        if(on == false)
         {

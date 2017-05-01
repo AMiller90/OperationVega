@@ -556,10 +556,8 @@ namespace Assets.Scripts.Controllers
         /// </returns>
         private IEnumerator DestroyRagDoll(GameObject theragdoll)
         {
-            Debug.Log("Dead");
             yield return new WaitForSeconds(2.0f);
             Destroy(theragdoll);
-            Debug.Log("Destroyed");
         }
 
         /// <summary>
@@ -904,7 +902,6 @@ namespace Assets.Scripts.Controllers
                         {
                             unit.ChangeStates("Decontaminate");
                             Transform thedoor = hit.transform.Find("FrontDoor");
-                            Debug.Log(thedoor.name);
                             Vector3 destination = new Vector3(thedoor.position.x, 0.5f, thedoor.position.z);
                             unit.SetTheMovePosition(destination);
                         }

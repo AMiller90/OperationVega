@@ -192,12 +192,10 @@ namespace Assets.Scripts
             Vector3 thedisplacement = (this.transform.position - this.theEnemy.transform.position).normalized;
             if (Vector3.Dot(thedisplacement, this.theEnemy.transform.forward) < 0)
             {
-                Debug.Log("Harvester crit hit!");
                 this.target.TakeDamage(this.mystats.Strength * 2);
             }
             else
             {
-                Debug.Log("Harvester Attacking for normal damage");
                 this.target.TakeDamage(this.mystats.Strength);
             }
 
@@ -470,6 +468,7 @@ namespace Assets.Scripts
             if (this.theEnemy != null && this.gothitfirst)
             {
                 this.gothitfirst = false;
+                this.animatorcontroller.SetTrigger("Idle");
                 this.animatorcontroller.SetTrigger("AttackTrigger");
                 this.ChangeStates("Battle");
             }
@@ -696,8 +695,6 @@ namespace Assets.Scripts
             }
 
             this.mystats.Resourcecount -= this.alreadystockedcount;
-
-            Debug.Log("Total to stock" + this.mystats.Resourcecount);
         }
 
         /// <summary>
@@ -958,11 +955,9 @@ namespace Assets.Scripts
         {
             enemy.stunned = true;
             nav.SetDestination(enemy.transform.position);
-            Debug.Log("Starting to wait");
             yield return new WaitForSeconds(3);
             enemy.stunned = false;
             enemy.Stuntimer = 0.0f;
-            Debug.Log("Done waiting.");
         }
 
         /// <summary>
@@ -1040,7 +1035,6 @@ namespace Assets.Scripts
             // This boolean helps with only calling the trigger for idle once, instead of each frame
             if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Walk") && this.navagent.velocity == Vector3.zero && this.walking)
             {
-                Debug.Log("Walk to idle");
                 this.walking = false;
                 this.animatorcontroller.SetTrigger("Idle");
             }

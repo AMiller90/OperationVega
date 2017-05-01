@@ -96,7 +96,6 @@ namespace Assets.Scripts
             {
                 if (this.navagent.velocity == Vector3.zero && this.mystats.Health > 0)
                 {
-                    Debug.Log("Enemy attacked!");
                     this.timebetweenattacks = 0;
                     this.enemycontroller.SetTrigger("AttackTrigger");
                 }

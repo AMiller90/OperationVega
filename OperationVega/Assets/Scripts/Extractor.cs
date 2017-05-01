@@ -172,12 +172,10 @@ namespace Assets.Scripts
             Vector3 thedisplacement = (this.transform.position - this.theEnemy.transform.position).normalized;
             if (Vector3.Dot(thedisplacement, this.theEnemy.transform.forward) < 0)
             {
-                Debug.Log("Harvester crit hit!");
                 this.target.TakeDamage(this.mystats.Strength * 2);
             }
             else
             {
-                Debug.Log("Harvester Attacking for normal damage");
                 this.target.TakeDamage(this.mystats.Strength);
             }
 
@@ -334,6 +332,7 @@ namespace Assets.Scripts
             if (this.theEnemy != null && this.gothitfirst)
             {
                 this.gothitfirst = false;
+                this.animatorcontroller.SetTrigger("Idle");
                 this.animatorcontroller.SetTrigger("AttackTrigger");
                 this.ChangeStates("Battle");
             }
@@ -574,8 +573,6 @@ namespace Assets.Scripts
             }
 
             this.mystats.Resourcecount -= this.alreadystockedcount;
-
-            Debug.Log("Total to stock" + this.mystats.Resourcecount);
         }
 
         /// <summary>
