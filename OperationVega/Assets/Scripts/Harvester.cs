@@ -256,6 +256,11 @@ namespace Assets.Scripts
         {
             if (this.harvesttime >= 1.0f && this.navagent.velocity == Vector3.zero)
             {
+                if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Walk"))
+                {
+                    this.animatorcontroller.SetTrigger("Idle");
+                }
+
                 // Start a coroutine to print the text to the screen -
                 // It is a coroutine to assist in helping prevent text objects from
                 // spawning on top one another.
@@ -1035,6 +1040,7 @@ namespace Assets.Scripts
             // This boolean helps with only calling the trigger for idle once, instead of each frame
             if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Walk") && this.navagent.velocity == Vector3.zero && this.walking)
             {
+                Debug.Log("Walk to idle");
                 this.walking = false;
                 this.animatorcontroller.SetTrigger("Idle");
             }

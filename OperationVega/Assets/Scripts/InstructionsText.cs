@@ -89,7 +89,7 @@ namespace Assets.Scripts
                         + "<color>Press Y</color> - To toggle panning of the camera by using the mouse at the borders of the screen.");
 
             InformationDictionary.Add("Unit Selection", "<color>Left click</color> a single unit - This will select the unit. Also, display the units health above their head, momentarily.\n"
-                         + "<color>Left click and drag</color> over multiple units to multi select.");
+                         + "<color>Left click and drag</color> over multiple units to multi select.\n" + "<color>Double-click</color> a unit and the camera will zoom in to its location.");
 
             InformationDictionary.Add("Unit Commands", "<color>Resources</color> - Right-click with selected unit(s) for harvesting.\n"
                          + "<color>Decontamination building</color> - Right-click if unit(s) are holding tainted resources.\n"
@@ -139,7 +139,7 @@ namespace Assets.Scripts
                         + "If you <color>attack them from behind</color> they will take more damage.\n"
                         + "They can overwhelm your units one on one.\n"
                         + "They can <color>taint</color> the mineral deposits and trees, yielding tainted resources that need to\n"
-                        + "be decontamintated, before stocking.");
+                        + "be decontamintated, before stocking.\n" + "<color>Double-click</color> an enemy and the camera will zoom in to its location.");
 
             InformationDictionary.Add("Resources", "<color>Harvesters</color> harvester food from the trees.\n"
                         + "<color>Miners</color> mine minerals from the mineral ore veins.\n"

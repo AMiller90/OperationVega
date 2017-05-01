@@ -14,6 +14,19 @@ namespace Assets.Scripts.Controllers
         /// </summary>
         public static uint MoveSpeed = 10;
 
+
+        /// <summary>
+        /// The number of clicks reference.
+        /// Reference to how many clicks in succession.
+        /// </summary>
+        public static int Numofclicks = 0;
+
+        /// <summary>
+        /// The double clicked object.
+        /// Reference to the object the user double clicked on it.
+        /// </summary>
+        public static GameObject Doubleclickedobj;
+
         /// <summary>
         /// The pan with mouse reference.
         /// </summary>
@@ -35,6 +48,12 @@ namespace Assets.Scripts.Controllers
         private uint rotateSpeed;
 
         /// <summary>
+        /// The double click delay.
+        /// Reference to the delay of the checking for double click.
+        /// </summary>
+        private float doubleclickdelay = 0;
+
+        /// <summary>
         /// The start function.
         /// </summary>
         private void Start()
@@ -53,6 +72,33 @@ namespace Assets.Scripts.Controllers
 
             MoveSpeed = (uint)Mathf.Clamp(MoveSpeed, 10, 15);
             this.rotateSpeed = (uint)Mathf.Clamp(this.rotateSpeed, 3, 5);
+
+            // Clicked once and less than time delay
+            if (Numofclicks == 1 && this.doubleclickdelay < 0.25f)
+            { // Start counting
+                this.doubleclickdelay += Time.deltaTime * 1;
+            }
+
+            // Clicked once and greater than or equal to time delay
+            if (Numofclicks == 1 && this.doubleclickdelay >= 0.25f)
+            { // Reset
+                this.doubleclickdelay = 0;
+                Numofclicks = 0;
+                Doubleclickedobj = null;
+            }
+            // If clicked twice and within the time delay
+            if (Numofclicks == 2 && this.doubleclickdelay < 0.25f)
+            { // Successful double click
+                Numofclicks = 0;
+                this.doubleclickdelay = 0;
+
+                // This line of code snaps the camera to the clicked objects position
+                this.gameObject.transform.position = new Vector3(Doubleclickedobj.transform.position.x, 0, Doubleclickedobj.transform.position.z);
+                
+                // This line of code snaps the camera to zoom in to the clicked object
+                Camera.main.transform.localPosition = new Vector3(0, 0, -15);
+            }
+
         }
 
         /// <summary>
@@ -167,6 +213,9 @@ namespace Assets.Scripts.Controllers
             {
                 this.transform.eulerAngles = Vector3.zero;
                 this.transform.position = Vector3.zero;
+
+                // This line of code snaps the camera to zoom in to the clicked object
+                Camera.main.transform.localPosition = new Vector3(0, 0, -45);
             }
 
             // Toggle on or off panning of camera with mouse

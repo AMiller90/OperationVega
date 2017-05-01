@@ -171,7 +171,7 @@ namespace Assets.Scripts
         public void OnMouseEnter()
         {
             // If the tooltip is active and the mouse isnt over a UI element then display tooltip
-            if (ToolTip.Istooltipactive && !EventSystem.current.IsPointerOverGameObject())
+            if (ToolTip.Istooltipactive && this.gameObject.layer != 5)
             {
                 UIManager.Self.Tooltipobjectpanel.gameObject.SetActive(true);
                 ToolTip.Self.Objectdescription = "Mineral Deposit.\n This resource provides " +

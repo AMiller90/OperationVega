@@ -531,6 +531,7 @@ namespace Assets.Scripts.Controllers
         /// </summary>
         private void Update()
         {
+
             this.ActivateDragScreen();
             this.SelectUnits();
             this.CommandUnits();
@@ -568,7 +569,7 @@ namespace Assets.Scripts.Controllers
         private void SelectUnits()
         {
             // If the left mouse button is pressed and its not clicking on a UI element
-            if (Input.GetKeyDown(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetKeyDown(KeyCode.Mouse0) && this.gameObject.layer != 5)
             {
                 this.ClearSelectedUnits();
                 
@@ -593,6 +594,10 @@ namespace Assets.Scripts.Controllers
                         // It is a coroutine to assist in helping prevent text objects from
                         // spawning on top one another.
                         this.StartCoroutine(this.CombatText(hit.transform.gameObject, Color.white, null));
+
+                        // Increment the count now that user has left clicked
+                        CameraController.Numofclicks++;
+                        CameraController.Doubleclickedobj = hit.transform.gameObject;
                     }
                     else if (hit.transform.GetComponent<Enemy>())
                     {
@@ -600,6 +605,10 @@ namespace Assets.Scripts.Controllers
                         // It is a coroutine to assist in helping prevent text objects from
                         // spawning on top one another.
                         this.StartCoroutine(this.CombatText(hit.transform.gameObject, new Color(255f, 0, 180, 0.75f), null));
+                        
+                        // Increment the count now that user has left clicked
+                        CameraController.Numofclicks++;
+                        CameraController.Doubleclickedobj = hit.transform.gameObject;
                     }
                 }
             }
@@ -678,8 +687,8 @@ namespace Assets.Scripts.Controllers
         /// </summary>
         private void CommandUnits()
         {
-            // If the right mouse button is pressed and its not on a UI element
-            if (Input.GetKeyDown(KeyCode.Mouse1) )/*&& !EventSystem.current.IsPointerOverGameObject()*/
+            // If the right mouse button is pressed
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

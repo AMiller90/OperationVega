@@ -1,6 +1,8 @@
 ﻿
 namespace Assets.Scripts
 {
+    using UI;
+
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -37,6 +39,12 @@ namespace Assets.Scripts
         /// The text on the panel to give information to.
         /// </summary>
         private Text textdisplay;
+
+        /// <summary>
+        /// The position set.
+        /// Reference to the position to set the tool tip to.
+        /// </summary>
+        private bool positionSet = false;
 
         /// <summary>
         /// Gets the self instance of the tool tip.
@@ -79,26 +87,29 @@ namespace Assets.Scripts
             this.yoffset = this.transform.GetComponent<RectTransform>().sizeDelta.y / 2;
             this.gameObject.SetActive(false);
         }
-		bool positionSet = false;
+
         /// <summary>
-        /// The update.
+        /// The OnEnable function.
         /// </summary>
         private void OnEnable()
         {
-			if (!positionSet)
+			if (!this.positionSet)
 			{
 				// Set the position to the mouse with an offset of having the mouse in the bottom left corner.
 				this.transform.position = new Vector3(
 					Input.mousePosition.x + this.xoffset,
 					Input.mousePosition.y + this.yoffset,
 					Input.mousePosition.z);
-				positionSet = true;
+			    this.positionSet = true;
 			}
         }
 
-		private void OnDisable()
-		{
-			positionSet = false;
-		}
+        /// <summary>
+        /// The on disable function.
+        /// </summary>
+        private void OnDisable()
+	    {
+		    this.positionSet = false;
+	    }
     }
 }
