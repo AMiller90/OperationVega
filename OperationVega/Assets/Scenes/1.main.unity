@@ -3210,6 +3210,65 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!1001 &591586521
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4211202623014844, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211202623014844, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211202623014844, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211202623014844, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211202623014844, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.42182708
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211202623014844, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211202623014844, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.90667635
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211202623014844, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 23405739772160986, guid: ec258beebad89074eb78d76a847c0bc4,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 19f2c1595c150154494564bb48e42061, type: 2}
+    - target: {fileID: 4211202623014844, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -49.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109020633439334, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109020633439334, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ec258beebad89074eb78d76a847c0bc4, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &594503913
 Prefab:
   m_ObjectHideFlags: 0
@@ -3750,6 +3809,81 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ed71dc05fa45c042aeb64b9ce07055c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &734791752 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1109020633439334, guid: ec258beebad89074eb78d76a847c0bc4,
+    type: 2}
+  m_PrefabInternal: {fileID: 591586521}
+--- !u!114 &734791753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734791752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 734791754}
+          m_MethodName: ChangeOutlineColor
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 734791754}
+          m_MethodName: ChangeOutlineColor
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &734791754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734791752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d659878a4248082408a2eab4a373d8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &734791755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734791752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0aa54875835b74388e45aad7c2c652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &761895334 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1423931357482000, guid: 042f69bc13c1f5b4da8780d4130bba4b,

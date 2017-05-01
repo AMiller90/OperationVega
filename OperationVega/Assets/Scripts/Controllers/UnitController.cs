@@ -698,6 +698,8 @@ namespace Assets.Scripts.Controllers
 
                     this.HealUnit(hit);
 
+                    if (hit.transform.name == "Workshop") return;
+
                     if (hit.transform.GetComponent<Enemy>())
                     {
                         this.CommandToAttack(hit);

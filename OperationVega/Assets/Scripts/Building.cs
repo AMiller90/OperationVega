@@ -37,6 +37,10 @@ namespace Assets.Scripts
                         ToolTip.Self.Objectdescription = "Barracks.\n This structure is the " +
                     " place where units will spawn when they are purchased.";
                         break;
+                    case "Workshop":
+                        ToolTip.Self.Objectdescription = "Workshop.\n This structure is the " +
+                    " place where the rocket is stored when built.";
+                        break;
                     default:
                         break;
                 }
