@@ -1,11 +1,15 @@
 ﻿
 namespace Assets.Scripts
 {
+    using System;
     using System.Collections;
     using Controllers;
     using Interfaces;
     using Managers;
     using UI;
+
+    using UnityEditor;
+
     using UnityEngine;
     using UnityEngine.AI;
 
@@ -15,6 +19,11 @@ namespace Assets.Scripts
     [RequireComponent(typeof(Stats))]
     public class Harvester : MonoBehaviour, IUnit, ICombat
     {
+        /// <summary>
+        /// The walking animator reference.
+        /// </summary>
+        private static readonly int WALKING = Animator.StringToHash("Walking");
+
         /// <summary>
         /// The harvester finite state machine.
         /// Used to keep track of the harvesters states.
@@ -431,15 +440,17 @@ namespace Assets.Scripts
         /// </summary>
         public void SetTheMovePosition(Vector3 targetPos)
         {
-            this.navagent.SetDestination(targetPos);
+            
             if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle"))
             {
+                this.navagent.SetDestination(targetPos);
                 this.animatorcontroller.SetTrigger("Walk");
             }
             else
             {
+                this.navagent.SetDestination(targetPos);
                 this.animatorcontroller.SetTrigger("Idle");
-                this.animatorcontroller.SetTrigger("Walk");
+                //this.animatorcontroller.SetTrigger("Walk");
             }
 
             this.walking = true;
@@ -487,7 +498,6 @@ namespace Assets.Scripts
             {
                 case "Battle":
                     this.DropItems();
-                    this.navagent.updateRotation = false;
                     this.theHarvesterFsm.Feed(thecurrentstate + "To" + destinationState, this.mystats.Attackrange);
                     break;
                 case "Idle":
@@ -495,21 +505,21 @@ namespace Assets.Scripts
                     this.theHarvesterFsm.Feed(thecurrentstate + "To" + destinationState, 1.0f);
                     break;
                 case "Harvest":
-                    this.navagent.updateRotation = false;
                     this.theHarvesterFsm.Feed(thecurrentstate + "To" + destinationState, 1.5f);
                     break;
                 case "Stock":
                     this.theobjecttolookat = GameObject.Find("Silo");
-                    this.navagent.updateRotation = false;
+                    if(Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                        this.navagent.updateRotation = false;
                     this.theHarvesterFsm.Feed(thecurrentstate + "To" + destinationState, 1.5f);
                     break;
                 case "Decontaminate":
                     this.theobjecttolookat = GameObject.Find("Decontamination");
-                    this.navagent.updateRotation = false;
+                    if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                        this.navagent.updateRotation = false;
                     this.theHarvesterFsm.Feed(thecurrentstate + "To" + destinationState, 1.0f);
                     break;
                 case "PickUp":
-                    this.navagent.updateRotation = false;
                     this.theHarvesterFsm.Feed(thecurrentstate + "To" + destinationState, 1.0f);
                     break;
                 default:
@@ -532,6 +542,8 @@ namespace Assets.Scripts
                 if (this.gothitfirst)
                 {
                     this.theobjecttolookat = this.theEnemy;
+                    if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                        this.navagent.updateRotation = false;
                 }
 
                 this.target = (ICombat)theTarget.GetComponent(typeof(ICombat));
@@ -550,6 +562,8 @@ namespace Assets.Scripts
             if (this.theEnemy != null)
             {
                 this.theobjecttolookat = this.theEnemy;
+                if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                    this.navagent.updateRotation = false;
                 this.target = (ICombat)theTarget.GetComponent(typeof(ICombat));
             }
         }
@@ -565,9 +579,11 @@ namespace Assets.Scripts
             if (theResource.GetComponent<Food>())
             {
                 this.theobjecttolookat = theResource;
+                if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                    this.navagent.updateRotation = false;
                 this.targetResource = (IResources)theResource.GetComponent(typeof(IResources));
                 this.navagent.SetDestination(theResource.transform.position);
-                this.animatorcontroller.SetTrigger("Walk");
+                //this.animatorcontroller.SetTrigger("Walk");
                 this.walking = true;
                 this.theRecentTree = theResource;
                 this.ChangeStates("Harvest");
@@ -586,8 +602,10 @@ namespace Assets.Scripts
             {
                 this.objecttopickup = thepickup;
                 this.theobjecttolookat = this.objecttopickup;
+                if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                    this.navagent.updateRotation = false;
                 this.navagent.SetDestination(thepickup.transform.position);
-                this.animatorcontroller.SetTrigger("Walk");
+                //this.animatorcontroller.SetTrigger("Walk");
                 this.walking = true;
                 this.ChangeStates("PickUp");
             }
@@ -762,6 +780,8 @@ namespace Assets.Scripts
             {
                 if (this.navagent.remainingDistance <= this.mystats.Attackrange && !this.navagent.pathPending)
                 {
+                    // Update rotation just incase traveling from a far distance
+                    if (this.navagent.updateRotation) this.navagent.updateRotation = false;
                     this.Attack();
                 }
             }
@@ -806,11 +826,13 @@ namespace Assets.Scripts
                         }
                     }
 
-                    if (this.targetResource != null && this.targetResource.Count > 0)
+                    if (this.targetResource != null && this.targetResource.Count > 0 && this.theRecentTree != null)
                     {
                         this.theobjecttolookat = this.theRecentTree;
+                        if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                            this.navagent.updateRotation = false;
                         this.navagent.SetDestination(this.theRecentTree.transform.position);
-                        this.animatorcontroller.SetTrigger("Walk");
+                        //this.animatorcontroller.SetTrigger("Walk");
                         this.walking = true;
                         this.ChangeStates("Harvest");
                     }
@@ -1031,14 +1053,6 @@ namespace Assets.Scripts
             UnitController.Self.CheckIfSelected(this.gameObject);
             this.UpdateUnit();
 
-            // If the current state is walking and the navagent has stopped moving and the boolean is set to currently walking
-            // This boolean helps with only calling the trigger for idle once, instead of each frame
-            if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Walk") && this.navagent.velocity == Vector3.zero && this.walking)
-            {
-                this.walking = false;
-                this.animatorcontroller.SetTrigger("Idle");
-            }
-
             if (this.mystats.Health <= this.mystats.Maxhealth / 4)
             {
                 this.theorb.GetComponent<SkinnedMeshRenderer>().material.color = Color.Lerp(this.theorb.GetComponent<SkinnedMeshRenderer>().material.color, this.dangercolor, Time.deltaTime * 20);
@@ -1051,6 +1065,10 @@ namespace Assets.Scripts
                     this.dangercolor = Color.black;
                 }
             }
+
+            var lookvel = new Vector3(this.navagent.velocity.x, 0, this.navagent.velocity.z);
+            this.walking = (lookvel.magnitude > 0) ? true : false;
+            this.animatorcontroller.SetBool(WALKING, this.walking);
         }
 
         /// <summary>
@@ -1062,6 +1080,6 @@ namespace Assets.Scripts
             GameManager.Instance.TheHarvesters.Remove(this);
             GameManager.Instance.CheckForLoss();
         }
-
     }
+    
 }

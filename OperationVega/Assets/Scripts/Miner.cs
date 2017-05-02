@@ -17,6 +17,11 @@ namespace Assets.Scripts
     public class Miner : MonoBehaviour, IUnit, ICombat
     {
         /// <summary>
+        /// The walking animator reference.
+        /// </summary>
+        private static readonly int WALKING = Animator.StringToHash("Walking");
+
+        /// <summary>
         /// The miner finite state machine.
         /// Used to keep track of the miners states.
         /// </summary>
@@ -443,13 +448,14 @@ namespace Assets.Scripts
         /// </summary>
         public void SetTheMovePosition(Vector3 targetPos)
         {
-            this.navagent.SetDestination(targetPos);
             if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle"))
             {
+                this.navagent.SetDestination(targetPos);
                 this.animatorcontroller.SetTrigger("Walk");
             }
             else
             {
+                this.navagent.SetDestination(targetPos);
                 this.animatorcontroller.SetTrigger("Idle");
                 this.animatorcontroller.SetTrigger("Walk");
             }
@@ -469,7 +475,6 @@ namespace Assets.Scripts
             switch (destinationState)
             {
                 case "Battle":
-                    this.navagent.updateRotation = false;
                     this.DropItems();
                     this.theMinerFsm.Feed(thecurrentstate + "To" + destinationState, this.mystats.Attackrange);
                     break;
@@ -478,21 +483,21 @@ namespace Assets.Scripts
                     this.theMinerFsm.Feed(thecurrentstate + "To" + destinationState, 1.0f);
                     break;
                 case "Harvest":
-                    this.navagent.updateRotation = false;
                     this.theMinerFsm.Feed(thecurrentstate + "To" + destinationState, 1.5f);
                     break;
                 case "Stock":
                     this.theobjecttolookat = GameObject.Find("Silo");
-                    this.navagent.updateRotation = false;
+                    if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                        this.navagent.updateRotation = false;
                     this.theMinerFsm.Feed(thecurrentstate + "To" + destinationState, 1.5f);
                     break;
                 case "Decontaminate":
                     this.theobjecttolookat = GameObject.Find("Decontamination");
-                    this.navagent.updateRotation = false;
+                    if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                        this.navagent.updateRotation = false;
                     this.theMinerFsm.Feed(thecurrentstate + "To" + destinationState, 1.0f);
                     break;
                 case "PickUp":
-                    this.navagent.updateRotation = false;
                     this.theMinerFsm.Feed(thecurrentstate + "To" + destinationState, 1.0f);
                     break;
                 default:
@@ -515,6 +520,8 @@ namespace Assets.Scripts
                 if (this.gothitfirst)
                 {
                     this.theobjecttolookat = this.theEnemy;
+                    if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                        this.navagent.updateRotation = false;
                 }
 
                 this.target = (ICombat)theTarget.GetComponent(typeof(ICombat));
@@ -533,6 +540,8 @@ namespace Assets.Scripts
             if (this.theEnemy != null)
             {
                 this.theobjecttolookat = this.theEnemy;
+                if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                    this.navagent.updateRotation = false;
                 this.target = (ICombat)theTarget.GetComponent(typeof(ICombat));
             }
         }
@@ -548,6 +557,8 @@ namespace Assets.Scripts
             if (theResource.GetComponent<Minerals>())
             {
                 this.theobjecttolookat = theResource;
+                if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                    this.navagent.updateRotation = false;
                 this.targetResource = (IResources)theResource.GetComponent(typeof(IResources));
                 this.navagent.SetDestination(theResource.transform.position);
                 this.animatorcontroller.SetTrigger("Walk");
@@ -569,6 +580,8 @@ namespace Assets.Scripts
             {
                 this.objecttopickup = thepickup;
                 this.theobjecttolookat = this.objecttopickup;
+                if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                    this.navagent.updateRotation = false;
                 this.navagent.SetDestination(thepickup.transform.position);
                 this.animatorcontroller.SetTrigger("Walk");
                 this.walking = true;
@@ -745,6 +758,8 @@ namespace Assets.Scripts
             {
                 if (this.navagent.remainingDistance <= this.mystats.Attackrange && !this.navagent.pathPending)
                 {
+                    // Update rotation just incase traveling from a far distance
+                    if (this.navagent.updateRotation) this.navagent.updateRotation = false;
                     this.Attack();
                 }
             }
@@ -789,9 +804,11 @@ namespace Assets.Scripts
                         }
                     }
 
-                    if (this.targetResource != null && this.targetResource.Count > 0)
+                    if (this.targetResource != null && this.targetResource.Count > 0 && this.theRecentMineralDeposit)
                     {
                         this.theobjecttolookat = this.theRecentMineralDeposit;
+                        if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
+                            this.navagent.updateRotation = false;
                         this.navagent.SetDestination(this.theRecentMineralDeposit.transform.position);
                         this.animatorcontroller.SetTrigger("Walk");
                         this.walking = true;
@@ -998,14 +1015,6 @@ namespace Assets.Scripts
             UnitController.Self.CheckIfSelected(this.gameObject);
             this.UpdateUnit();
 
-            // If the current state is walking and the navagent has stopped moving and the boolean is set to currently walking
-            // This boolean helps with only calling the trigger for idle once, instead of each frame
-            if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Walk") && this.navagent.velocity == Vector3.zero && this.walking)
-            {
-                this.walking = false;
-                this.animatorcontroller.SetTrigger("Idle");
-            }
-
             if (this.mystats.Health <= this.mystats.Maxhealth / 4)
             {
                 this.theorb.GetComponent<SkinnedMeshRenderer>().material.color = Color.Lerp(this.theorb.GetComponent<SkinnedMeshRenderer>().material.color, this.dangercolor, Time.deltaTime * 20);
@@ -1018,8 +1027,12 @@ namespace Assets.Scripts
                     this.dangercolor = Color.black;
                 }
             }
-        }
 
+            var lookvel = new Vector3(this.navagent.velocity.x, 0, this.navagent.velocity.z);
+            this.walking = (lookvel.magnitude > 0) ? true : false;
+            this.animatorcontroller.SetBool(WALKING, this.walking);
+        }
+  
         /// <summary>
         /// The on destroy function.
         /// </summary>

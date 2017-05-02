@@ -145,21 +145,17 @@ public class UIActions : MonoBehaviour {
 
     private void OnActions()
     {
-        //If true set values to zero
+        // If true set values to zero
         if (revertactionstab)
         {
-            m_ActionsTAB.offsetMax = new Vector2(m_ActionsTAB.offsetMax.x, 0);
-            m_ActionsTAB.offsetMin = new Vector2(m_ActionsTAB.offsetMin.x, 0);
-
+            m_ActionsTAB.gameObject.SetActive(true);
             revertactionstab = false;
         }
-        //If not true set to this position
+        // If not true set to this position
         else if (!revertactionstab)
         {
+            m_ActionsTAB.gameObject.SetActive(false);
             revertactionstab = true;
-
-            m_ActionsTAB.offsetMax = new Vector2(m_ActionsTAB.offsetMax.x, Scalefactor);
-            m_ActionsTAB.offsetMin = new Vector2(m_ActionsTAB.offsetMin.x, -115);
         }
        
     } 

@@ -708,17 +708,13 @@ namespace UI
         {
             if(revertunittab)
             {
-                m_UnitTAB.offsetMax = new Vector2(m_UnitTAB.offsetMax.x, 0);
-                m_UnitTAB.offsetMin = new Vector2(m_UnitTAB.offsetMin.x, 0);
-
+                m_UnitTAB.gameObject.SetActive(true);
                 revertunittab = false;
             }
             else if(!revertunittab)
             {
+                m_UnitTAB.gameObject.SetActive(false);
                 revertunittab = true;
-
-                m_UnitTAB.offsetMax = new Vector2(m_UnitTAB.offsetMax.x, Scalefactor);
-                m_UnitTAB.offsetMin = new Vector2(m_UnitTAB.offsetMin.x, -115);
             }
 
            

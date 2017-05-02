@@ -55,10 +55,6 @@ public class UICrafting : MonoBehaviour
 
     void Awake()
     {
-        revertcraftingtab = true;
-
-
-
         defaultInput1 = Input1;
         defaultInput2 = Input2;
         defaultOutput = Output;
@@ -239,23 +235,20 @@ public class UICrafting : MonoBehaviour
 
     private void OnCrafting()
     {
-        //Moves the crafting tab up
+
+        // Moves the crafting tab up
         if (revertcraftingtab)
         {
-            m_CraftingTAB.offsetMax = new Vector2(m_CraftingTAB.offsetMax.x, 0);
-            m_CraftingTAB.offsetMin = new Vector2(m_CraftingTAB.offsetMin.x, 0);
-
+            this.m_CraftingTAB.gameObject.SetActive(true);
             revertcraftingtab = false;
 
         }
 
-        //Sets the crafting tab to its original state
+        // Sets the crafting tab to its original state
         else if (!revertcraftingtab)
         {
+            this.m_CraftingTAB.gameObject.SetActive(false);
             revertcraftingtab = true;
-
-            m_CraftingTAB.offsetMax = new Vector2(m_CraftingTAB.offsetMax.x, Scalefactor);
-            m_CraftingTAB.offsetMin = new Vector2(m_CraftingTAB.offsetMin.x, -115);
         }
 
 
@@ -318,16 +311,16 @@ public class UICrafting : MonoBehaviour
         }
 
         //If Input is minerals and food, produce steel.
-        if (Input1.sprite == minerals.sprite && Input2.sprite == food.sprite)
+        if (Input1.sprite == minerals.sprite && Input2.sprite == fuel.sprite)
         {
             Output.sprite = steel.sprite;
-            if (User.MineralsCount > 0 && User.FoodCount > 0)
+            if (User.MineralsCount > 0 && User.FuelCount > 0)
             {
                 User.MineralsCount--;
-                User.FoodCount--;
+                User.FuelCount--;
                 User.SteelCount++;
             }
-            else if (User.MineralsCount <= 0 && User.FoodCount <= 0)
+            else if (User.MineralsCount <= 0 && User.FuelCount <= 0)
             {
                 User.MineralsCount = 0;
                 User.FoodCount = 0;
@@ -340,19 +333,19 @@ public class UICrafting : MonoBehaviour
             }
             ObjectiveManager.Instance.TheObjectives[ObjectiveType.Craft].Currentvalue++;
         }
-        if (Input2.sprite == minerals.sprite && Input1.sprite == food.sprite)
+        if (Input2.sprite == minerals.sprite && Input1.sprite == fuel.sprite)
         {
             Output.sprite = steel.sprite;
-            if (User.MineralsCount > 0 && User.FoodCount > 0)
+            if (User.MineralsCount > 0 && User.FuelCount > 0)
             {
                 User.MineralsCount--;
-                User.FoodCount--;
+                User.FuelCount--;
                 User.SteelCount++;
             }
-            else if (User.MineralsCount <= 0 && User.FoodCount <= 0)
+            else if (User.MineralsCount <= 0 && User.FuelCount <= 0)
             {
                 User.MineralsCount = 0;
-                User.FoodCount = 0;
+                User.FuelCount = 0;
                 Output.sprite = Xbutton.sprite;
 
             }

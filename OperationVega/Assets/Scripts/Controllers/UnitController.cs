@@ -22,7 +22,6 @@ namespace Assets.Scripts.Controllers
     /// </summary>
     public class UnitController : MonoBehaviour
     {
-        public LayerMask allbutui;
         /// <summary>
         /// The purchase harvester reference.
         /// Determines if the purchase harvester button was clicked.
@@ -42,6 +41,11 @@ namespace Assets.Scripts.Controllers
         public static bool PurchaseExtractor;
 
         /// <summary>
+        /// The reference for all layer mask elements except UI.
+        /// </summary>
+        public LayerMask Allbutui;
+
+        /// <summary>
         /// The Harvester reference.
         /// Reference to a Harvester prefab.
         /// </summary>
@@ -59,9 +63,16 @@ namespace Assets.Scripts.Controllers
         /// </summary>
         public GameObject Extractor;
 
+        /// <summary>
+        /// The unit hit reference.
+        /// Reference to the unit who was attacked.
+        /// </summary>
         [HideInInspector]
         public GameObject Unithit;
 
+        /// <summary>
+        /// Sets the rag doll reference.
+        /// </summary>
         [HideInInspector]
         public GameObject RagDoll
         {
@@ -390,65 +401,10 @@ namespace Assets.Scripts.Controllers
             this.mineraldeposits = theresources.FindAll(x => x.GetComponent<Minerals>());
             this.geysers = theresources.FindAll(x => x.GetComponent<Gas>());
 
-            // Select all the units
-            this.SelectAllUnits();
-
-            foreach (GameObject go in this.units)
-            {
-                IUnit u = (IUnit)go.GetComponent(typeof(IUnit));
-
-                // If its a harvester
-                if (go.GetComponent<Harvester>())
-                {
-                    // Sort the trees list
-                    this.trees.Sort(
-                        delegate (GameObject a, GameObject b)
-                        {
-                            float distanceA = Vector3.Distance(a.transform.position, go.transform.position);
-                            float distanceB = Vector3.Distance(b.transform.position, go.transform.position);
-
-                            if (distanceA > distanceB) return 1;
-                            if (distanceA < distanceB) return -1;
-
-                            return 0;
-                        });
-
-                    // Set the target to the closest tree to the unit
-                    u.SetTargetResource(this.trees[0]);
-                } 
-                // If it's a miner
-                else if (go.GetComponent<Miner>())
-                {
-                    this.mineraldeposits.Sort(
-                        delegate (GameObject a, GameObject b)
-                        {
-                            float distanceA = Vector3.Distance(a.transform.position, go.transform.position);
-                            float distanceB = Vector3.Distance(b.transform.position, go.transform.position);
-
-                            if (distanceA > distanceB) return 1;
-                            if (distanceA < distanceB) return -1;
-
-                            return 0;
-                        });
-
-                    u.SetTargetResource(this.mineraldeposits[0]);
-                }
-                else if (go.GetComponent<Extractor>())
-                {
-                    this.geysers.Sort(
-                        delegate (GameObject a, GameObject b)
-                        {
-                            float distanceA = Vector3.Distance(a.transform.position, go.transform.position);
-                            float distanceB = Vector3.Distance(b.transform.position, go.transform.position);
-
-                            if (distanceA > distanceB) return 1;
-                            if (distanceA < distanceB) return -1;
-
-                            return 0;
-                        });
-
-                    u.SetTargetResource(this.geysers[0]);
-                }
+            // If there are units currently selected or a single unit selected
+            if (this.units.Count > 0 || this.theUnit != null)
+            { // Send those selected to harvest
+                this.FindClosestResource();
             }
         }
 
@@ -566,10 +522,12 @@ namespace Assets.Scripts.Controllers
         /// </summary>
         private void SelectUnits()
         {
-            // If the left mouse button is pressed and its not clicking on a UI element
-            if (Input.GetKeyDown(KeyCode.Mouse0) && this.gameObject.layer != 5)
+            // If the left mouse button is pressed
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                this.ClearSelectedUnits();
+                // Don't clear the units if the mouse clicked on a UI element
+                if (!EventSystem.current.IsPointerOverGameObject())
+                    this.ClearSelectedUnits();
                 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -692,7 +650,7 @@ namespace Assets.Scripts.Controllers
 
                 RaycastHit hit = new RaycastHit();
 
-                if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000f, allbutui))
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, 1000f, this.Allbutui))
                 {
                     this.clickdestination = new Vector3(hit.point.x, 0.5f, hit.point.z);
 
@@ -835,6 +793,21 @@ namespace Assets.Scripts.Controllers
             {
                 this.theUnit.GoToPickup(hit.transform.gameObject);
             }
+            else if (this.units.Count > 0)
+            {
+                foreach (GameObject go in this.units)
+                {
+                    if (!go.GetComponent(typeof(IUnit)))
+                    {
+                        Debug.LogWarning(string.Format("hey, no component on {0}", go.name));
+                    }
+                    else
+                    {
+                        IUnit unit = (IUnit)go.GetComponent(typeof(IUnit));
+                        unit.GoToPickup(hit.transform.gameObject);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -847,6 +820,9 @@ namespace Assets.Scripts.Controllers
         {
             if (this.theUnit != null)
             {
+                // Don't stock if the unit does not have a resource to stock
+                if (this.theselectedobject.transform.childCount < 4) return;
+
                 this.theUnit.SetTheMovePosition(this.clickdestination);
                 this.theUnit.ChangeStates("Stock");
             }
@@ -860,10 +836,14 @@ namespace Assets.Scripts.Controllers
                     }
                     else
                     {
-                        IUnit unit = (IUnit)go.GetComponent(typeof(IUnit));
+                        // Only stock if the unit has a resource to stock
+                        if (go.transform.childCount > 3)
+                        {
+                            IUnit unit = (IUnit)go.GetComponent(typeof(IUnit));
 
-                        unit.SetTheMovePosition(this.clickdestination);
-                        unit.ChangeStates("Stock");
+                            unit.SetTheMovePosition(this.clickdestination);
+                            unit.ChangeStates("Stock");
+                        }
                     }
                 }
             }
@@ -1076,6 +1056,129 @@ namespace Assets.Scripts.Controllers
 
                     unit.SetTheMovePosition(this.clickdestination);
                     unit.ChangeStates("Idle");
+                }
+            }
+        }
+
+        /// <summary>
+        /// The find closest resource function.
+        /// Finds the closest resource to send a unit to.
+        /// </summary>
+        private void FindClosestResource()
+        {
+            if (this.theUnit != null)
+            {
+                // If its a harvester
+                if (this.theUnit is Harvester)
+                {
+                    // Sort the trees list
+                    this.trees.Sort(
+                        delegate(GameObject a, GameObject b)
+                            {
+                                float distanceA = Vector3.Distance(a.transform.position, this.theselectedobject.transform.position);
+                                float distanceB = Vector3.Distance(b.transform.position, this.theselectedobject.transform.position);
+
+                                if (distanceA > distanceB) return 1;
+                                if (distanceA < distanceB) return -1;
+
+                                return 0;
+                            });
+
+                    // Set the target to the closest tree to the unit
+                    this.theUnit.SetTargetResource(this.trees[0]);
+                }
+                // If it's a miner
+                else if (this.theUnit is Miner)
+                {
+                    this.mineraldeposits.Sort(
+                        delegate(GameObject a, GameObject b)
+                            {
+                                float distanceA = Vector3.Distance(a.transform.position, this.theselectedobject.transform.position);
+                                float distanceB = Vector3.Distance(b.transform.position, this.theselectedobject.transform.position);
+
+                                if (distanceA > distanceB) return 1;
+                                if (distanceA < distanceB) return -1;
+
+                                return 0;
+                            });
+
+                    this.theUnit.SetTargetResource(this.mineraldeposits[0]);
+                }
+                else if (this.theUnit is Extractor)
+                {
+                    this.geysers.Sort(
+                        delegate(GameObject a, GameObject b)
+                            {
+                                float distanceA = Vector3.Distance(a.transform.position, this.theselectedobject.transform.position);
+                                float distanceB = Vector3.Distance(b.transform.position, this.theselectedobject.transform.position);
+
+                                if (distanceA > distanceB) return 1;
+                                if (distanceA < distanceB) return -1;
+
+                                return 0;
+                            });
+
+                    this.theUnit.SetTargetResource(this.geysers[0]);
+                }
+            } // If units are multi selected
+            else
+            {
+                foreach (GameObject go in this.units)
+                {
+                    IUnit u = (IUnit)go.GetComponent(typeof(IUnit));
+
+                    // If its a harvester
+                    if (go.GetComponent<Harvester>())
+                    {
+                        // Sort the trees list
+                        this.trees.Sort(
+                            delegate(GameObject a, GameObject b)
+                                {
+                                    float distanceA = Vector3.Distance(a.transform.position, go.transform.position);
+                                    float distanceB = Vector3.Distance(b.transform.position, go.transform.position);
+
+                                    if (distanceA > distanceB) return 1;
+                                    if (distanceA < distanceB) return -1;
+
+                                    return 0;
+                                });
+
+                        // Set the target to the closest tree to the unit
+                        u.SetTargetResource(this.trees[0]);
+                    }
+                    // If it's a miner
+                    else if (go.GetComponent<Miner>())
+                    {
+                        this.mineraldeposits.Sort(
+                            delegate(GameObject a, GameObject b)
+                                {
+                                    float distanceA = Vector3.Distance(a.transform.position, go.transform.position);
+                                    float distanceB = Vector3.Distance(b.transform.position, go.transform.position);
+
+                                    if (distanceA > distanceB) return 1;
+                                    if (distanceA < distanceB) return -1;
+
+                                    return 0;
+                                });
+
+                        u.SetTargetResource(this.mineraldeposits[0]);
+                    }
+                    else if (go.GetComponent<Extractor>())
+                    {
+                        this.geysers.Sort(
+                            delegate(GameObject a, GameObject b)
+                                {
+                                    float distanceA = Vector3.Distance(a.transform.position, go.transform.position);
+                                    float distanceB = Vector3.Distance(b.transform.position, go.transform.position);
+
+                                    if (distanceA > distanceB) return 1;
+                                    if (distanceA < distanceB) return -1;
+
+                                    return 0;
+                                });
+
+                        u.SetTargetResource(this.geysers[0]);
+                    }
                 }
             }
         }
