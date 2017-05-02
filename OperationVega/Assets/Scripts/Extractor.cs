@@ -79,12 +79,6 @@ namespace Assets.Scripts
         private bool gothitfirst;
 
         /// <summary>
-        /// The walking reference.
-        /// Reference for the unit walking or not.
-        /// </summary>
-        private bool walking;
-
-        /// <summary>
         /// The time between attacks reference.
         /// Stores the reference to the timer between attacks.
         /// </summary>
@@ -241,7 +235,6 @@ namespace Assets.Scripts
                     GameObject thesilo = GameObject.Find("Silo");
                     Vector3 destination = new Vector3(thesilo.transform.position.x + (this.transform.forward.x * 2), 0.5f, thesilo.transform.position.z + (this.transform.forward.z * 2));
                     this.SetTheMovePosition(destination);
-                    this.walking = true;
                     return;
                 }
 
@@ -362,8 +355,6 @@ namespace Assets.Scripts
                 this.animatorcontroller.SetTrigger("Idle");
                 this.animatorcontroller.SetTrigger("Walk");
             }
-
-            this.walking = true;
         }
 
         /// <summary>
@@ -382,7 +373,6 @@ namespace Assets.Scripts
                     this.navagent.updateRotation = false;
                 this.navagent.SetDestination(thepickup.transform.position);
                 this.animatorcontroller.SetTrigger("Walk");
-                this.walking = true;
                 this.ChangeStates("PickUp");
             }
         }
@@ -481,7 +471,6 @@ namespace Assets.Scripts
                 this.targetResource = (IResources)theResource.GetComponent(typeof(IResources));
                 this.navagent.SetDestination(theResource.transform.position);
                 this.animatorcontroller.SetTrigger("Walk");
-                this.walking = true;
                 this.theRecentGeyser = theResource;
                 this.ChangeStates("Harvest");
             }
@@ -527,7 +516,7 @@ namespace Assets.Scripts
         /// </summary>
         private void InitUnit()
         {
-            this.theorb = this.transform.GetChild(2).GetChild(2).GetChild(0).gameObject;
+            this.theorb = this.transform.FindChild("Unit_body").GetChild(2).GetChild(0).gameObject;
             this.dangercolor = Color.black;
 
             this.mystats = this.GetComponent<Stats>();
@@ -701,7 +690,6 @@ namespace Assets.Scripts
                             this.navagent.updateRotation = false;
                         this.navagent.SetDestination(this.theRecentGeyser.transform.position);
                         this.animatorcontroller.SetTrigger("Walk");
-                        this.walking = true;
                         this.ChangeStates("Harvest");
                     }
                     else
@@ -853,8 +841,8 @@ namespace Assets.Scripts
 
 
             var lookvel = new Vector3(this.navagent.velocity.x, 0, this.navagent.velocity.z);
-            this.walking = (lookvel.magnitude > 0) ? true : false;
-            this.animatorcontroller.SetBool(WALKING, this.walking);
+            var walking = (lookvel.magnitude > 0) ? true : false;
+            this.animatorcontroller.SetBool(WALKING, walking);
         }
 
         /// <summary>

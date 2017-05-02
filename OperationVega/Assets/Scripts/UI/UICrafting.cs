@@ -221,7 +221,20 @@ public class UICrafting : MonoBehaviour
 
     private void OnSteel()
     {
-      
+        //Will Change the source image to the first craft slot
+        //Second Slot if first one is selected.
+        if (input1b)
+        {
+            Input1.sprite = steel.sprite;
+
+            input1b = false;
+        }
+        else if (!input1b)
+        {
+            Input2.sprite = steel.sprite;
+
+            input2b = false;
+        }
     }
 
 

@@ -8,8 +8,6 @@ namespace Assets.Scripts
     using Managers;
     using UI;
 
-    using UnityEditor;
-
     using UnityEngine;
     using UnityEngine.AI;
 
@@ -110,12 +108,6 @@ namespace Assets.Scripts
         /// Determines how the unit should act upon taking damage.
         /// </summary>
         private bool gothitfirst;
-
-        /// <summary>
-        /// The walking reference.
-        /// Reference for the unit walking or not.
-        /// </summary>
-        private bool walking;
 
         /// <summary>
         /// The time between attacks reference.
@@ -291,7 +283,6 @@ namespace Assets.Scripts
                     GameObject thesilo = GameObject.Find("Silo");
                     Vector3 destination = new Vector3(thesilo.transform.position.x + (this.transform.forward.x * 2), 0.5f, thesilo.transform.position.z + (this.transform.forward.z * 2));
                     this.SetTheMovePosition(destination);
-                    this.walking = true;
                     return;
                 }
                 else if (this.mystats.Resourcecount == 5 && this.targetResource.Taint)
@@ -309,7 +300,6 @@ namespace Assets.Scripts
                     Transform thedoor = thedecontaminationbuilding.transform.Find("FrontDoor");
                     Vector3 destination = new Vector3(thedoor.position.x, 0.5f, thedoor.position.z);
                     this.SetTheMovePosition(destination);
-                    this.walking = true;
                     return;
                 }
 
@@ -427,7 +417,6 @@ namespace Assets.Scripts
                     Vector3 destination = new Vector3(thesilo.transform.position.x + (this.transform.forward.x * 2), 0.5f, thesilo.transform.position.z + (this.transform.forward.z * 2));
                     this.navagent.SetDestination(destination);
                     this.animatorcontroller.SetTrigger("Walk");
-                    this.walking = true;
                 }
             }
         }
@@ -450,10 +439,7 @@ namespace Assets.Scripts
             {
                 this.navagent.SetDestination(targetPos);
                 this.animatorcontroller.SetTrigger("Idle");
-                //this.animatorcontroller.SetTrigger("Walk");
             }
-
-            this.walking = true;
         }
 
         /// <summary>
@@ -583,8 +569,6 @@ namespace Assets.Scripts
                     this.navagent.updateRotation = false;
                 this.targetResource = (IResources)theResource.GetComponent(typeof(IResources));
                 this.navagent.SetDestination(theResource.transform.position);
-                //this.animatorcontroller.SetTrigger("Walk");
-                this.walking = true;
                 this.theRecentTree = theResource;
                 this.ChangeStates("Harvest");
             }
@@ -605,8 +589,6 @@ namespace Assets.Scripts
                 if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
                     this.navagent.updateRotation = false;
                 this.navagent.SetDestination(thepickup.transform.position);
-                //this.animatorcontroller.SetTrigger("Walk");
-                this.walking = true;
                 this.ChangeStates("PickUp");
             }
         }
@@ -655,7 +637,7 @@ namespace Assets.Scripts
         /// </summary>
         private void InitUnit()
         {
-            this.theorb = this.transform.GetChild(1).GetChild(2).GetChild(0).gameObject;
+            this.theorb = this.transform.FindChild("Unit_body").GetChild(2).GetChild(0).gameObject;
             this.dangercolor = Color.black;
 
             this.mystats = this.GetComponent<Stats>();
@@ -832,8 +814,6 @@ namespace Assets.Scripts
                         if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
                             this.navagent.updateRotation = false;
                         this.navagent.SetDestination(this.theRecentTree.transform.position);
-                        //this.animatorcontroller.SetTrigger("Walk");
-                        this.walking = true;
                         this.ChangeStates("Harvest");
                     }
                     else
@@ -917,7 +897,7 @@ namespace Assets.Scripts
                         // spawning on top one another.
                         this.StartCoroutine(UnitController.Self.CombatText(this.gameObject, Color.white, "Picked up.."));
 
-                        Vector3 position = this.transform.position + (this.transform.forward * -0.22f); //new Vector3(-this.transform.forward.x, 0.6f, -0.62f);
+                        Vector3 position = this.transform.position + (this.transform.forward * -0.22f);
                         position.y = 0.6f;
                         this.objecttopickup.transform.position = position;
                         this.objecttopickup.transform.SetParent(this.transform);
@@ -1067,8 +1047,8 @@ namespace Assets.Scripts
             }
 
             var lookvel = new Vector3(this.navagent.velocity.x, 0, this.navagent.velocity.z);
-            this.walking = (lookvel.magnitude > 0) ? true : false;
-            this.animatorcontroller.SetBool(WALKING, this.walking);
+            var walking = (lookvel.magnitude > 0) ? true : false;
+            this.animatorcontroller.SetBool(WALKING, walking);
         }
 
         /// <summary>
