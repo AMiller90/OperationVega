@@ -23,11 +23,17 @@ namespace Assets.Scripts
     [RequireComponent(typeof(Stats))]
     public class Enemy : MonoBehaviour, ICombat
     {
+
         /// <summary>
         /// The current target reference.
         /// </summary>
         [HideInInspector]
         public GameObject Currenttarget;
+
+        /// <summary>
+        /// The walking animator reference.
+        /// </summary>
+        private static readonly int WALKING = Animator.StringToHash("Walking");
 
         /// <summary>
         /// The enemy finite state machine.
@@ -170,7 +176,6 @@ namespace Assets.Scripts
         public void OnTaint()
         {
             // Incase the unit was walking before tainting, set it to false
-            this.enemycontroller.SetBool("Walk", false);
             this.enemycontroller.SetBool("Taint", false);
             this.enemycontroller.SetTrigger("Idle");
             this.particlesystem.Play();
@@ -186,14 +191,12 @@ namespace Assets.Scripts
         {
             if (Vector3.Distance(this.Currenttarget.transform.position, this.transform.position) > this.mystats.Attackrange)
             {
-                this.enemycontroller.SetBool("Walk", false);
                 this.navagent.SetDestination(this.transform.position);
                 this.enemycontroller.SetTrigger("Idle");
             }
             else
             {
                 this.enemycontroller.SetTrigger("Idle");
-                this.enemycontroller.SetBool("Walk", false);
                 IUnit u = this.target as IUnit;
                 u.AutoTarget(this.gameObject);
                 this.target.TakeDamage(this.mystats.Strength);
@@ -280,7 +283,6 @@ namespace Assets.Scripts
                 if (this.Currenttarget == null)
                 {
                     this.target = null;
-                    this.enemycontroller.SetBool("Walk", false);
                     this.navagent.SetDestination(this.transform.position);
                     this.enemycontroller.SetTrigger("Idle");
                     this.ChangeStates("Idle");
@@ -290,7 +292,6 @@ namespace Assets.Scripts
                 {
                     if (!this.enemycontroller.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
                     {
-                        this.enemycontroller.SetBool("Walk", false);
                         this.navagent.SetDestination(this.transform.position);
                         this.enemycontroller.SetTrigger("Idle");
                     }
@@ -365,6 +366,10 @@ namespace Assets.Scripts
         {
             this.UpdateEnemy();
             this.UpdateRotation();
+
+            var lookvel = new Vector3(this.navagent.velocity.x, 0, this.navagent.velocity.z);
+            var walking = (lookvel.magnitude > 0) ? true : false;
+            this.enemycontroller.SetBool(WALKING, walking);
         }
     }
 }

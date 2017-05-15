@@ -131,7 +131,6 @@ namespace Assets.Scripts
                     this.scared = false;
                     this.runtimer = 1;
                     this.mynavagent.SetDestination(this.transform.position);
-                    this.enemycontroller.SetBool("Walk", false);
                     this.enemycontroller.SetTrigger("Idle");
                 }
 
@@ -143,22 +142,12 @@ namespace Assets.Scripts
                 {
                     if (this.scared) this.scared = false;
 
-                    this.enemycontroller.SetBool("Walk", false);
                     this.enemycontroller.SetTrigger("Idle");
                     this.mynavagent.SetDestination(this.transform.position);
                 }
 
                 this.Stuntimer += 1 * Time.deltaTime;
 
-            }
-
-            // If in the idle state and moving
-            if (this.enemycontroller.GetCurrentAnimatorStateInfo(0).IsName("Idle")
-                && this.mynavagent.velocity != Vector3.zero && !this.enemycontroller.GetBool("Walk"))
-            {
-                // Activate walk animation
-                this.enemycontroller.SetBool("Walk", true);
-                this.enemycontroller.SetTrigger("WalkTrigger");
             }
         }
 
