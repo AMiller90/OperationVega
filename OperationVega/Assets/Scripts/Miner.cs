@@ -224,11 +224,6 @@ namespace Assets.Scripts
         {
             if (this.harvesttime >= 1.0f && this.navagent.velocity == Vector3.zero)
             {
-                if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Walk"))
-                {
-                    this.animatorcontroller.SetTrigger("Idle");
-                }
-
                 // Start a coroutine to print the text to the screen -
                 // It is a coroutine to assist in helping prevent text objects from
                 // spawning on top one another.
@@ -438,15 +433,11 @@ namespace Assets.Scripts
         /// </summary>
         public void SetTheMovePosition(Vector3 targetPos)
         {
-            if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle"))
+            if (!this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle"))
             {
-                this.navagent.SetDestination(targetPos);
-            }
-            else
-            {
-                this.navagent.SetDestination(targetPos);
                 this.animatorcontroller.SetTrigger("Idle");
             }
+            this.navagent.SetDestination(targetPos);
         }
 
         /// <summary>

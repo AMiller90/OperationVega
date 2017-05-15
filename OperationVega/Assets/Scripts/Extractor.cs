@@ -208,11 +208,6 @@ namespace Assets.Scripts
         {
             if (this.harvesttime >= 1.0f && this.navagent.velocity == Vector3.zero)
             {
-                if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Walk"))
-                {
-                    this.animatorcontroller.SetTrigger("Idle");
-                }
-
                 // Start a coroutine to print the text to the screen -
                 // It is a coroutine to assist in helping prevent text objects from
                 // spawning on top one another.
@@ -344,17 +339,11 @@ namespace Assets.Scripts
         /// </summary>
         public void SetTheMovePosition(Vector3 targetPos)
         {
-            if (this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle"))
+            if (!this.animatorcontroller.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle"))
             {
-                this.navagent.SetDestination(targetPos);
-                this.animatorcontroller.SetTrigger("Walk");
-            }
-            else
-            {
-                this.navagent.SetDestination(targetPos);
                 this.animatorcontroller.SetTrigger("Idle");
-                this.animatorcontroller.SetTrigger("Walk");
             }
+            this.navagent.SetDestination(targetPos);
         }
 
         /// <summary>
@@ -470,7 +459,6 @@ namespace Assets.Scripts
                     this.navagent.updateRotation = false;
                 this.targetResource = (IResources)theResource.GetComponent(typeof(IResources));
                 this.navagent.SetDestination(theResource.transform.position);
-                this.animatorcontroller.SetTrigger("Walk");
                 this.theRecentGeyser = theResource;
                 this.ChangeStates("Harvest");
             }
@@ -689,7 +677,6 @@ namespace Assets.Scripts
                         if (Vector3.Distance(this.gameObject.transform.position, this.theobjecttolookat.transform.position) <= 5.0f)
                             this.navagent.updateRotation = false;
                         this.navagent.SetDestination(this.theRecentGeyser.transform.position);
-                        this.animatorcontroller.SetTrigger("Walk");
                         this.ChangeStates("Harvest");
                     }
                     else
